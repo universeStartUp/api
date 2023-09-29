@@ -1,10 +1,10 @@
 package com.pe.unieventia.email.resource;
 
-import lombok.AllArgsConstructor;
+import jakarta.validation.constraints.Email;
 import lombok.Data;
 
 @Data
-@AllArgsConstructor
 public class EmailCreateResource {
+    @Email
     private String email;
 }

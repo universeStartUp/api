@@ -24,14 +24,15 @@ public class EmailService {
     public Email createEmail(String emailStr) {
         String[] parts = emailStr.split("@");
         if (emailRepository.existsByLocalAndEmailDomain_Domain(parts[0], parts[1])) {
-            throw new ResourceAlreadyExistsException("El correo" + emailStr + "ya fue registrado previamente en la aplicación.");
+            throw new ResourceAlreadyExistsException("El correo " + emailStr + " ya fue registrado previamente en la aplicación.");
         }
         else {
             EmailDomain emailDomain = emailDomainRepository.findByDomain(parts[1])
-                .orElseThrow(() -> new ValidationException("El dominio de correo: " + parts[1] + " no es valido"));
+                .orElseThrow(() -> new ValidationException("El dominio de correo '" + parts[1] + "' no es valido"));
             Email email = new Email();
             email.setLocal(parts[0]);
             email.setEmailDomain(emailDomain);
+            email = emailRepository.save(email);
             return email;
         }
 

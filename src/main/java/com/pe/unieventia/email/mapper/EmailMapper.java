@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 import com.pe.unieventia.email.domain.entity.Email;
 import com.pe.unieventia.email.resource.EmailResource;
+import com.pe.unieventia.email.resource.EmailResponseResource;
 
 @Component
 public class EmailMapper {
@@ -14,5 +15,8 @@ public class EmailMapper {
     }
     public Email resourceToEntity(EmailResource emailResource) {
         return modelMapper.map(emailResource, Email.class);
+    }
+    public EmailResponseResource entityToResource(Email email) {
+        return modelMapper.map(email, EmailResponseResource.class);
     }
 }

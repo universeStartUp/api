@@ -9,6 +9,6 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/api/v1/student_accounts")
 @RequiredArgsConstructor
 public class StudentAccountController {
-    private studentAccountService
+    //private studentAccountService
     
 }

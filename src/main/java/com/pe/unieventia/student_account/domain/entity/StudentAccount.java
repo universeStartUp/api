@@ -1,5 +1,7 @@
 package com.pe.unieventia.student_account.domain.entity;
 
+import com.pe.unieventia.email.domain.entity.Email;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

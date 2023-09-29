@@ -12,6 +12,6 @@ import java.util.Optional;
 @Repository
 public interface EmailDomainRepository extends JpaRepository<EmailDomain, Long> {
     //Optional<EmailDomain> findById(Long emailDomainId);
-    boolean existsByDomain(String domain);
-    Optional<Long> findIdByDomain(String domain);
+    //boolean existsByDomain(String domain);
+    Optional<EmailDomain> findByDomain(String domain);
 }

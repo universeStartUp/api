@@ -1,4 +1,4 @@
-package com.pe.unieventia.student.domain.entity;
+package com.pe.unieventia.google_info.domain.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,13 +9,15 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="Students")
-public class Student {
+@Table(name = "GoogleInfo")
+public class GoogleInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long studentId;
-    private String firstName;
-    private String lastName;
-    private String studentCode;
-    private String phoneNumber;
+    Long googleInfoId;
+    String accessToken;
+    String refreshToken;
+    public GoogleInfo() {
+        this.accessToken = "0";
+        this.refreshToken = "0";
+    }
 }

@@ -30,7 +30,7 @@ public class StudentController {
     
     @PostMapping
     public ResponseEntity<StudentResponseResource> createStudent(@Valid @RequestBody StudentResource studentResource) {
-        StudentResponseResource studentResponseResource = studentService.createStudent(studentResource);
-        return new ResponseEntity<>(studentResponseResource, HttpStatus.OK);
+        StudentResponseResource studentResponseResource = studentService.createStudentResponse(studentResource);
+        return new ResponseEntity<>(studentResponseResource, HttpStatus.CREATED);
     }
 }

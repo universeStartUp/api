@@ -22,7 +22,7 @@ public class EmailController {
 
     @PostMapping
     public ResponseEntity<EmailResponseResource> createEmail(@Valid @RequestBody EmailCreateResource emailCreateResource) {
-        EmailResponseResource studentResponseResource = emailService.createEmailResponse(emailCreateResource.getEmail());
-        return new ResponseEntity<>(studentResponseResource, HttpStatus.OK);
+        EmailResponseResource emailResponseResource = emailService.createEmailResponse(emailCreateResource.getEmail());
+        return new ResponseEntity<>(emailResponseResource, HttpStatus.CREATED);
     }
 }

@@ -25,10 +25,11 @@ public class StudentService {
     }
     
     @Transactional
-    public StudentResponseResource createStudent(StudentResource studentResource) {
+    public Student createStudent(StudentResource studentResource) {
         Student student = studentMapper.resourceToEntity(studentResource);
-        student = studentRepository.save(student);
-
-        return studentMapper.entityToResponseResource(student);
+        return studentRepository.save(student);
+    }
+    public StudentResponseResource createStudentResponse(StudentResource studentResource) {
+        return studentMapper.entityToResponseResource(createStudent(studentResource));
     }
 }

@@ -1,4 +1,12 @@
 /home/aldiqui/documents/dev/unieventia/api/src/main/java/com/pe/unieventia/controllers/TaskController.java
+/home/aldiqui/documents/dev/unieventia/api/src/main/java/com/pe/unieventia/controllers/AttendanceController.java
+/home/aldiqui/documents/dev/unieventia/api/src/main/java/com/pe/unieventia/controllers/HelloController.java
+/home/aldiqui/documents/dev/unieventia/api/src/main/java/com/pe/unieventia/AttendanceRequest.java
+/home/aldiqui/documents/dev/unieventia/api/src/main/java/com/pe/unieventia/repositories/AttendanceRepository.java
 /home/aldiqui/documents/dev/unieventia/api/src/main/java/com/pe/unieventia/controllers/HomeController.java
 /home/aldiqui/documents/dev/unieventia/api/src/main/java/com/pe/unieventia/models/Task.java
+/home/aldiqui/documents/dev/unieventia/api/src/main/java/com/pe/unieventia/models/Students.java
+/home/aldiqui/documents/dev/unieventia/api/src/main/java/com/pe/unieventia/AttendanceService.java
+/home/aldiqui/documents/dev/unieventia/api/src/main/java/com/pe/unieventia/models/Attendance.java
 /home/aldiqui/documents/dev/unieventia/api/src/main/java/com/pe/unieventia/UnieventiaApplication.java
+/home/aldiqui/documents/dev/unieventia/api/src/main/java/com/pe/unieventia/controllers/RegistrationController.java

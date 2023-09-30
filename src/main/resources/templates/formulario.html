@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Estudiante</title>
+</head>
+<body>
+
+    <h1>Formulario de Estudiante</h1>
+
+    <form action="/guardar-asistencia" method="post">
+
+        <!-- Campo para el código de estudiante -->
+        <label for="studentCode">Código de Estudiante:</label>
+        <input type="text" id="studentCode" name="studentCode" required><br><br>
+
+        <!-- Campo para el primer ID -->
+        <label for="firstId">Primer ID:</label>
+        <input type="number" id="firstId" name="firstId" required><br><br>
+
+        <!-- Campo para el segundo ID -->
+        <label for="secondId">Segundo ID:</label>
+        <input type="number" id="secondId" name="secondId" required><br><br>
+
+        <!-- Botón de envío -->
+        <input type="submit" value="Guardar Asistencia">
+
+    </form>
+
+</body>
+</html>

@@ -1,4 +1,12 @@
 Task.class
-com/pe/unieventia/UnieventiaApplication.class
+com/pe/unieventia/models/Students.class
+AttendanceService.class
 TaskController.class
 HomeController.class
+Attendance.class
+com/pe/unieventia/AttendanceRequest.class
+net/javaguides/springboot/controller/HelloController.class
+AttendanceRepository.class
+AttendanceController.class
+RegistrationController.class
+com/pe/unieventia/UnieventiaApplication.class

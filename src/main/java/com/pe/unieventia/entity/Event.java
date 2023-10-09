@@ -27,6 +27,10 @@ public class Event {
     @JoinColumn(name="date_id")
     private Date date;
 
+    @ManyToOne
+    @JoinColumn(name="state_id")
+    private EventState eventState;
+
     @ManyToMany
-    Set<EventState> eventStates;
+    Set<EventCategory> eventCategories;
 }

@@ -1,7 +1,7 @@
 package com.pe.unieventia.student_account.domain.entity;
 
-import com.pe.unieventia.email.domain.entity.Email;
 import com.pe.unieventia.google_info.domain.entity.GoogleInfo;
+import com.pe.unieventia.student.domain.entity.Email;
 import com.pe.unieventia.student.domain.entity.Student;
 
 import jakarta.persistence.Entity;
@@ -11,7 +11,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-//import jakarta.validation.constraints.Email;
 import lombok.Data;
 
 @Data
@@ -31,7 +30,7 @@ public class StudentAccount {
     private Email email;
 
     @OneToOne
-    @JoinColumn(name = "googleInfoId")    
+    @JoinColumn(name = "googleInfoId")
     private GoogleInfo googleInfo;
 
     private String password;

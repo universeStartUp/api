@@ -5,48 +5,58 @@ import java.util.List;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
+import com.pe.unieventia.student.dto.input.StudentAccountDTO;
 import com.pe.unieventia.student_account.domain.entity.StudentAccount;
-import com.pe.unieventia.student_account.resource.StudentAccountResource;
-import com.pe.unieventia.student_account.resource.StudentAccountResponseResource;
+import com.pe.unieventia.student_account.dto.SignUpResponseDTO;
+import com.pe.unieventia.student_account.dto.StudentAccountResponseDTO;
 
 @Component
 public class StudentAccountMapper {
     private final ModelMapper modelMapper;
 
     public StudentAccountMapper(ModelMapper modelMapper) {
+        modelMapper.typeMap(StudentAccount.class, SignUpResponseDTO.class)
+            .addMapping(
+                src -> src.getEmail().getEmailAdress(),
+                SignUpResponseDTO::setEmail
+            );
+
         this.modelMapper = modelMapper;
     }
     
-    public StudentAccount resourceToEntity(StudentAccountResource studentAccountResource) {
-        return modelMapper.map(studentAccountResource, StudentAccount.class);
+    public StudentAccount dtoToEntity(StudentAccountDTO studentAccountDto) {
+        return modelMapper.map(studentAccountDto, StudentAccount.class);
     }
 
-    public StudentAccountResource entityToResource(StudentAccount student) {
-        return modelMapper.map(student, StudentAccountResource.class);
+    public StudentAccountDTO entityToDto(StudentAccount student) {
+        return modelMapper.map(student, StudentAccountDTO.class);
     }
 
-    public StudentAccountResponseResource entityToResponseResource(StudentAccount studentAccount) {
-        return modelMapper.map(studentAccount, StudentAccountResponseResource.class);
+    public StudentAccountResponseDTO entityToResponseDto(StudentAccount studentAccount) {
+        return modelMapper.map(studentAccount, StudentAccountResponseDTO.class);
     }
 
-    public List<StudentAccount> resourceListToEntityList(List<StudentAccountResource> studentResources) {
-        return studentResources
+    public List<StudentAccount> dtoListToEntityList(List<StudentAccountDTO> studentDtos) {
+        return studentDtos
                 .stream()
-                .map(this::resourceToEntity)
+                .map(this::dtoToEntity)
                 .toList();
     }
 
-    public List<StudentAccountResource> entityListToResourceList(List<StudentAccount> studentAccounts) {
+    public List<StudentAccountDTO> entityListToDtoList(List<StudentAccount> studentAccounts) {
         return studentAccounts
                 .stream()
-                .map(this::entityToResource)
+                .map(this::entityToDto)
                 .toList();
     }
 
-    public List<StudentAccountResponseResource> entityListToResponseResourceList(List<StudentAccount> studentAccounts) {
+    public List<StudentAccountResponseDTO> entityListToResponseDtoList(List<StudentAccount> studentAccounts) {
         return studentAccounts
                 .stream()
-                .map(this::entityToResponseResource)
+                .map(this::entityToResponseDto)
                 .toList();
+    }
+    public SignUpResponseDTO studentAccountToSignUpResponseDto(StudentAccount studentAccount) {
+        return modelMapper.map(studentAccount, SignUpResponseDTO.class);
     }
 }

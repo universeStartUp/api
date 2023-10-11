@@ -7,10 +7,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pe.unieventia.email.resource.EmailResponseResource;
 import com.pe.unieventia.student_account.domain.service.StudentAccountService;
-import com.pe.unieventia.student_account.resource.StudentAccountResponseResource;
-import com.pe.unieventia.student_account.resource.SignUpResource;
+import com.pe.unieventia.student_account.dto.SignUpDTO;
+import com.pe.unieventia.student_account.dto.SignUpResponseDTO;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -22,8 +21,8 @@ public class StudentAccountController {
     private final StudentAccountService studentAccountService;
 
     @PostMapping
-    private ResponseEntity<StudentAccountResponseResource> createStudentAccount(@Valid @RequestBody SignUpResource studentAccountSignUpResource) {
-        StudentAccountResponseResource studentAccountResponseResource = studentAccountService.createStudentAccountResponse(studentAccountSignUpResource);
+    private ResponseEntity<SignUpResponseDTO> createStudentAccount(@Valid @RequestBody SignUpDTO studentAccountSignUpResource) {
+        SignUpResponseDTO studentAccountResponseResource = studentAccountService.createStudentAccountResponse(studentAccountSignUpResource);
         return new ResponseEntity<>(studentAccountResponseResource, HttpStatus.CREATED);
     }
 }

@@ -6,8 +6,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
 import com.pe.unieventia.student.domain.entity.Student;
-import com.pe.unieventia.student.resource.StudentResource;
-import com.pe.unieventia.student.resource.StudentResponseResource;
+import com.pe.unieventia.student.dto.input.StudentDTO;
+import com.pe.unieventia.student.dto.response.StudentResponseDTO;
 
 @Component
 public class StudentMapper {
@@ -18,36 +18,36 @@ public class StudentMapper {
         this.modelMapper = modelMapper;
     }
 
-    public Student resourceToEntity(StudentResource studentResource) {
-        return modelMapper.map(studentResource, Student.class);
+    public Student dtoToEntity(StudentDTO studentDto) {
+        return modelMapper.map(studentDto, Student.class);
     }
 
-    public StudentResource entityToResource(Student student) {
-        return modelMapper.map(student, StudentResource.class);
+    public StudentDTO entityToDto(Student student) {
+        return modelMapper.map(student, StudentDTO.class);
     }
 
-    public StudentResponseResource entityToResponseResource(Student student) {
-        return modelMapper.map(student, StudentResponseResource.class);
+    public StudentResponseDTO entityToResponseDto(Student student) {
+        return modelMapper.map(student, StudentResponseDTO.class);
     }
 
-    public List<Student> resourceListToEntityList(List<StudentResource> studentResources) {
-        return studentResources
+    public List<Student> dtoListToEntityList(List<StudentDTO> studentDtos) {
+        return studentDtos
                 .stream()
-                .map(this::resourceToEntity)
+                .map(this::dtoToEntity)
                 .toList();
     }
 
-    public List<StudentResource> entityListToResourceList(List<Student> students) {
+    public List<StudentDTO> entityListToDtoList(List<Student> students) {
         return students
                 .stream()
-                .map(this::entityToResource)
+                .map(this::entityToDto)
                 .toList();
     }
 
-    public List<StudentResponseResource> entityListToResponseResourceList(List<Student> students) {
+    public List<StudentResponseDTO> entityListToResponseDtoList(List<Student> students) {
         return students
                 .stream()
-                .map(this::entityToResponseResource)
+                .map(this::entityToResponseDto)
                 .toList();
     }
 }

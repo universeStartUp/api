@@ -32,5 +32,8 @@ public class Event {
     private EventState eventState;
 
     @ManyToMany
+    @JoinTable(name="event_event_categories",
+    joinColumns = @JoinColumn(name = "event_id"),
+    inverseJoinColumns = @JoinColumn(name="event_categories_id"))
     Set<EventCategory> eventCategories;
 }

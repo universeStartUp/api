@@ -17,7 +17,7 @@ public class EventCategory {
     private Long id;
     private String name;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "eventCategories")
     Set<Event> events;
 
 }

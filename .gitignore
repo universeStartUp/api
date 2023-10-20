@@ -1,8 +1,5 @@
-/target
-/.idea
-/.idea/dataSources
-
 *.iml
 *.iws
 *.ipr
 .idea/
+target/

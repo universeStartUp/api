@@ -23,5 +23,5 @@ public class EventRequestDTO {
     @NotNull
     private Set<EventCategoryRequestDTO> eventCategoryRequestDTOS;
     @NotNull
-    private Set<EventStateRequestDTO> eventStateRequestDTOS;
+    private EventStateRequestDTO eventStateRequestDTO;
 }

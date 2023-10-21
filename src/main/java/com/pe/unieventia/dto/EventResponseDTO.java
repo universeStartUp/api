@@ -16,5 +16,5 @@ public class EventResponseDTO {
     private DistrictResponseDTO districtResponseDTO;
     private LocationResponseDTO locationResponseDTO;
     private Set<EventCategoryResponseDTO> eventCategoryResponseDTOS;
-    private Set<EventStateResponseDTO> eventStateResponseDTOS;
+    private EventStateResponseDTO eventStateResponseDTO;
 }

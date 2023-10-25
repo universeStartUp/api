@@ -4,8 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
 import com.pe.unieventia.student.domain.entity.Email;
-import com.pe.unieventia.student.dto.input.EmailDTO;
-import com.pe.unieventia.student.dto.response.EmailResumeResponseDTO;
+import com.pe.unieventia.student.dto.EmailResponseDTO;
 
 @Component
 public class EmailMapper {
@@ -13,15 +12,13 @@ public class EmailMapper {
 
     public EmailMapper(ModelMapper modelMapper) {
         modelMapper
-            .typeMap(Email.class, EmailResumeResponseDTO.class)
-            .addMapping(src -> src.getEmailDomain().getDomain(), EmailResumeResponseDTO::setDomain);
+            .typeMap(Email.class, EmailResponseDTO.class)
+            .addMapping(src -> src.getEmailDomain().getDomain(), EmailResponseDTO::setDomain)
+            .addMapping(src -> src.getEmailDomain().getUniversity(), EmailResponseDTO::setUniversity);
 
         this.modelMapper = modelMapper;
     }
-    public Email resourceToEntity(EmailDTO emailResource) {
-        return modelMapper.map(emailResource, Email.class);
-    }
-    public EmailResumeResponseDTO entityToResource(Email email) {
-        return modelMapper.map(email, EmailResumeResponseDTO.class);
+    public EmailResponseDTO entityToResponseDTO(Email email) {
+        return modelMapper.map(email, EmailResponseDTO.class);
     }
 }

@@ -1,7 +1,8 @@
 package com.pe.unieventia.student_account.dto;
 
-import com.pe.unieventia.student.dto.response.EmailResumeResponseDTO;
-import com.pe.unieventia.student.dto.response.StudentResponseDTO;
+import java.time.LocalDateTime;
+
+import com.pe.unieventia.student.dto.StudentResponseDTO;
 
 import lombok.Data;
 
@@ -9,5 +10,5 @@ import lombok.Data;
 public class StudentAccountResponseDTO {
     private Long studentAccountId;
     private StudentResponseDTO student;
-    private EmailResumeResponseDTO email;
+    private LocalDateTime creationDateTime;
 }

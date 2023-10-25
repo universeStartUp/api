@@ -9,36 +9,29 @@ import com.pe.unieventia.student.domain.entity.Email;
 import com.pe.unieventia.student.domain.entity.EmailDomain;
 import com.pe.unieventia.student.domain.persistence.EmailDomainRepository;
 import com.pe.unieventia.student.domain.persistence.EmailRepository;
-import com.pe.unieventia.student.dto.response.EmailResumeResponseDTO;
-import com.pe.unieventia.student.mapper.EmailMapper;
 
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
 public class EmailService {
-    private final EmailMapper emailMapper;
     private final EmailRepository emailRepository;
     private final EmailDomainRepository emailDomainRepository;
 
     @Transactional
-    public Email createEmail(String emailStr) {
-        String[] parts = emailStr.split("@");
+    public Email createEmail(String emailAddress) {
+        String[] parts = emailAddress.split("@");
         if (emailRepository.existsByLocalAndEmailDomain_Domain(parts[0], parts[1])) {
-            throw new ResourceAlreadyExistsException("Email is already registered:" + emailStr);
+            throw new ResourceAlreadyExistsException("Email " + emailAddress + " is already registered");
         } else {
             EmailDomain emailDomain = emailDomainRepository
                 .findByDomain(parts[1])
-                .orElseThrow(() -> new ValidationException("Invalid email domain : " + parts[1]));
+                .orElseThrow(() -> new ValidationException("Email domain " + parts[1] + " is not a valid domain"));
             Email email = new Email();
             email.setLocal(parts[0]);
             email.setEmailDomain(emailDomain);
+            
             return emailRepository.save(email);
         }
-    }
-
-    public EmailResumeResponseDTO createEmailResponse(String emailString) {
-        Email email = this.createEmail(emailString);
-        return emailMapper.entityToResource(email);
     }
 }

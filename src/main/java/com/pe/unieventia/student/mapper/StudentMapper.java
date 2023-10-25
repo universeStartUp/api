@@ -6,8 +6,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
 import com.pe.unieventia.student.domain.entity.Student;
-import com.pe.unieventia.student.dto.input.StudentDTO;
-import com.pe.unieventia.student.dto.response.StudentResponseDTO;
+import com.pe.unieventia.student.dto.StudentDTO;
+import com.pe.unieventia.student.dto.StudentResponseDTO;
 
 @Component
 public class StudentMapper {
@@ -22,14 +22,6 @@ public class StudentMapper {
         return modelMapper.map(studentDto, Student.class);
     }
 
-    public StudentDTO entityToDto(Student student) {
-        return modelMapper.map(student, StudentDTO.class);
-    }
-
-    public StudentResponseDTO entityToResponseDto(Student student) {
-        return modelMapper.map(student, StudentResponseDTO.class);
-    }
-
     public List<Student> dtoListToEntityList(List<StudentDTO> studentDtos) {
         return studentDtos
                 .stream()
@@ -37,11 +29,19 @@ public class StudentMapper {
                 .toList();
     }
 
+    public StudentDTO entityToDto(Student student) {
+        return modelMapper.map(student, StudentDTO.class);
+    }
+
     public List<StudentDTO> entityListToDtoList(List<Student> students) {
         return students
                 .stream()
                 .map(this::entityToDto)
                 .toList();
+    }
+
+    public StudentResponseDTO entityToResponseDto(Student student) {
+        return modelMapper.map(student, StudentResponseDTO.class);
     }
 
     public List<StudentResponseDTO> entityListToResponseDtoList(List<Student> students) {

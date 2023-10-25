@@ -3,9 +3,9 @@ package com.pe.unieventia.student_account.mapper;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
-import com.pe.unieventia.google_info.domain.entity.GoogleInfo;
-import com.pe.unieventia.google_info.resource.GoogleInfoResource;
-import com.pe.unieventia.google_info.resource.GoogleInfoResponseResource;
+import com.pe.unieventia.student_account.domain.entity.GoogleInfo;
+import com.pe.unieventia.student_account.dto.GoogleInfoDTO;
+import com.pe.unieventia.student_account.dto.GoogleInfoResponseDTO;
 
 @Component
 public class GoogleInfoMapper {
@@ -15,15 +15,15 @@ public class GoogleInfoMapper {
         this.modelMapper = modelMapper;
     }
 
-    public GoogleInfo resourceToEntity(GoogleInfoResource googleInfoResource) {
+    public GoogleInfo resourceToEntity(GoogleInfoDTO googleInfoResource) {
         return modelMapper.map(googleInfoResource, GoogleInfo.class);
     }
 
-    public GoogleInfoResource entityToResource(GoogleInfo googleInfo) {
-        return modelMapper.map(googleInfo, GoogleInfoResource.class);
+    public GoogleInfoDTO entityToResource(GoogleInfo googleInfo) {
+        return modelMapper.map(googleInfo, GoogleInfoDTO.class);
     }
 
-    public GoogleInfoResponseResource entityToResponseResource(GoogleInfo googleInfo) {
-        return modelMapper.map(googleInfo, GoogleInfoResponseResource.class);
+    public GoogleInfoResponseDTO entityToResponseResource(GoogleInfo googleInfo) {
+        return modelMapper.map(googleInfo, GoogleInfoResponseDTO.class);
     }
 }

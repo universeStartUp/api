@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.pe.unieventia.student_account.domain.service.StudentAccountService;
 import com.pe.unieventia.student_account.dto.SignUpDTO;
-import com.pe.unieventia.student_account.dto.SignUpResponseDTO;
+import com.pe.unieventia.student_account.dto.StudentAccountResponseDTO;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -21,8 +21,18 @@ public class StudentAccountController {
     private final StudentAccountService studentAccountService;
 
     @PostMapping
-    private ResponseEntity<SignUpResponseDTO> createStudentAccount(@Valid @RequestBody SignUpDTO studentAccountSignUpResource) {
-        SignUpResponseDTO studentAccountResponseResource = studentAccountService.createStudentAccountResponse(studentAccountSignUpResource);
+    private ResponseEntity<StudentAccountResponseDTO> signUp(@Valid @RequestBody SignUpDTO signUpDTO) {
+        StudentAccountResponseDTO studentAccountResponseResource = studentAccountService.createStudentAccount(
+            signUpDTO.getSurname(),
+            signUpDTO.getFirstName(),
+            signUpDTO.getLastName(),
+            signUpDTO.getStudentCode(),
+            signUpDTO.getPhoneNumber(),
+            signUpDTO.getEmailAddress(),
+            signUpDTO.getPassword()
+        );
+
         return new ResponseEntity<>(studentAccountResponseResource, HttpStatus.CREATED);
     }
+
 }

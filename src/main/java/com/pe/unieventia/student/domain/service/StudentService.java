@@ -2,11 +2,10 @@ package com.pe.unieventia.student.domain.service;
 
 import org.springframework.stereotype.Service;
 
-import com.pe.unieventia.shared.exception.ResourceNotFoundException;
+import com.pe.unieventia.student.domain.entity.Email;
 import com.pe.unieventia.student.domain.entity.Student;
 import com.pe.unieventia.student.domain.persistence.StudentRepository;
-import com.pe.unieventia.student.dto.input.StudentDTO;
-import com.pe.unieventia.student.dto.response.StudentResponseDTO;
+import com.pe.unieventia.student.dto.StudentResponseDTO;
 import com.pe.unieventia.student.mapper.StudentMapper;
 
 import jakarta.transaction.Transactional;
@@ -18,20 +17,47 @@ public class StudentService {
     private final StudentRepository studentRepository;
     private final StudentMapper studentMapper;
 
-    public StudentResponseDTO getStudentById(Long studentId) {
-        Student student = studentRepository
-            .findById(studentId)
-            .orElseThrow(() -> new ResourceNotFoundException("Student not found with id: " + studentId));
-        return studentMapper.entityToResponseDto(student);
-    }
+    private final EmailService emailService;
     
     @Transactional
-    public Student createStudent(StudentDTO studentDto) {
-        Student student = studentMapper.dtoToEntity(studentDto);
+    public Student createStudent(
+        String surname,
+        String firstName,
+        String lastName,
+        String studentCode,
+        String phoneNumber,
+        String emailAddress
+    ) {
+        Email email = emailService.createEmail(emailAddress);
+        Student student = new Student();
+        student.setSurname(surname);
+        student.setFirstName(firstName);
+        student.setLastName(lastName);
+        student.setStudentCode(studentCode);
+        student.setPhoneNumber(phoneNumber);
+        student.setEmail(email);
+
         return studentRepository.save(student);
     }
-    
-    public StudentResponseDTO createStudentResponse(StudentDTO studentDto) {
-        return studentMapper.entityToResponseDto(createStudent(studentDto));
+
+    @Transactional
+    public StudentResponseDTO createStudentResponseDto(
+        String surname,
+        String firstName,
+        String lastName,
+        String studentCode,
+        String phoneNumber,
+        String emailAddress
+    ) {
+        return studentMapper.entityToResponseDto(createStudent(
+                surname,
+                firstName,
+                lastName,
+                studentCode,
+                phoneNumber,
+                emailAddress
+            )
+        );
     }
+    
 }

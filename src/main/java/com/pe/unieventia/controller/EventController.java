@@ -1,9 +1,6 @@
 package com.pe.unieventia.controller;
 
-import com.pe.unieventia.dto.DateRequestDTO;
-import com.pe.unieventia.dto.EventRequestDTO;
-import com.pe.unieventia.dto.EventResponseDTO;
-import com.pe.unieventia.dto.LocationRequestDTO;
+import com.pe.unieventia.dto.*;
 import com.pe.unieventia.service.EventService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -47,14 +44,14 @@ public class EventController {
         return new ResponseEntity<>(event, HttpStatus.OK);
     }
 
-    @GetMapping("/get/{title}")
+    @GetMapping("/get/title/{title}")
     public ResponseEntity<List<EventResponseDTO>> getEvent(
             @PathVariable String title) {
         List<EventResponseDTO> event = eventService.getEventByTitle(title);
         return new ResponseEntity<>(event, HttpStatus.OK);
     }
 
-    @GetMapping("/get/{state}")
+    @GetMapping("/get/state/{state}")
     public ResponseEntity<List<EventResponseDTO>> getEventByState(
             @PathVariable String state) {
         List<EventResponseDTO> event = eventService.getEventByEventState(state);
@@ -72,6 +69,13 @@ public class EventController {
     public ResponseEntity<List<EventResponseDTO>> getEventByDate(
             @RequestBody DateRequestDTO dateRequestDTO) {
         List<EventResponseDTO> event = eventService.getEventByDate(dateRequestDTO);
+        return new ResponseEntity<>(event, HttpStatus.OK);
+    }
+
+    @PostMapping("/get/category")
+    public ResponseEntity<List<EventResponseDTO>> getEventByCategory(
+            @RequestBody List<EventCategoryRequestDTO> categories) {
+        List<EventResponseDTO> event = eventService.getEventByCategories(categories);
         return new ResponseEntity<>(event, HttpStatus.OK);
     }
 

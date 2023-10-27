@@ -8,6 +8,7 @@ import com.pe.unieventia.mappers.EventMapper;
 import com.pe.unieventia.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.*;
 
@@ -171,6 +172,20 @@ public class EventService {
         List<Event> events = new ArrayList<>();
         for (Date date : dates) {
             events.addAll(eventRepository.findAllByDate_Id(date.getId()));
+        }
+
+        return eventMapper.entityListToResponseResourceList(events);
+    }
+    public List<EventResponseDTO> getEventByCategories(List<EventCategoryRequestDTO> categories)
+    {
+        Set<EventCategory> eventCategories = new HashSet<>();
+        for (EventCategoryRequestDTO eventCategoryRequestDTO : categories) {
+            eventCategories.add(eventCategoryRepository.findByName(eventCategoryRequestDTO.getName())
+                    .orElseThrow(() -> new ResourceNotFoundException("event category not found")));
+        }
+        List<Event> events = eventRepository.findAllByEventCategoriesIn(eventCategories);
+        if (events.isEmpty()) {
+            throw new ResourceNotFoundException("event not found with categories: " + categories);
         }
 
         return eventMapper.entityListToResponseResourceList(events);

@@ -23,18 +23,18 @@ public class EventService {
 
     public EventResponseDTO createEvent(EventRequestDTO eventRequestDTO) {
 
-        DateRequestDTO dateRequestDTO = eventRequestDTO.getDateRequestDTO();
-        LocationRequestDTO locationRequestDTO = eventRequestDTO.getLocationRequestDTO();
-        EventStateRequestDTO eventStateRequestDTO = eventRequestDTO.getEventStateRequestDTO();
-        Set<EventCategoryRequestDTO> eventCategoryRequestDTOS = eventRequestDTO.getEventCategoryRequestDTOS();
+        DateRequestDTO dateRequestDTO = eventRequestDTO.getDate();
+        LocationRequestDTO locationRequestDTO = eventRequestDTO.getLocation();
+        EventStateRequestDTO eventStateRequestDTO = eventRequestDTO.getEventState();
+        Set<EventCategoryRequestDTO> eventCategoryRequestDTOS = eventRequestDTO.getEventCategories();
 
 
         Date date = dateRepository.findByBeginDateAndEndDate(
                         dateRequestDTO.getBeginDate(), dateRequestDTO.getEndDate())
                 .orElseThrow(() -> new ResourceNotFoundException("date not found"));
         Location location = locationRepository.findByAddressAndDistrict_NameAndDistrict_Department_Name(
-                        locationRequestDTO.getAddress(), locationRequestDTO.getDistrictRequestDTO().getName(),
-                        locationRequestDTO.getDistrictRequestDTO().getDepartmentRequestDTO().getName())
+                        locationRequestDTO.getAddress(), locationRequestDTO.getDistrict().getName(),
+                        locationRequestDTO.getDistrict().getDepartment().getName())
                 .orElseThrow(() -> new ResourceNotFoundException("location not found"));
 
         EventState eventState = eventStateRepository.findByName(eventStateRequestDTO.getName())
@@ -49,7 +49,7 @@ public class EventService {
 
         Event event = new Event();
 
-        event.setTitle(eventRequestDTO.getName());
+        event.setTitle(eventRequestDTO.getTitle());
         event.setDescription(eventRequestDTO.getDescription());
         event.setDate(date);
         event.setLocation(location);
@@ -73,17 +73,17 @@ public class EventService {
         if (event.isEmpty()) {
             throw new ResourceNotFoundException("event not found with id: " + id);
         }
-        DateRequestDTO dateRequestDTO = eventRequestDTO.getDateRequestDTO();
-        LocationRequestDTO locationRequestDTO = eventRequestDTO.getLocationRequestDTO();
-        EventStateRequestDTO eventStateRequestDTO = eventRequestDTO.getEventStateRequestDTO();
-        Set<EventCategoryRequestDTO> eventCategoryRequestDTOS = eventRequestDTO.getEventCategoryRequestDTOS();
+        DateRequestDTO dateRequestDTO = eventRequestDTO.getDate();
+        LocationRequestDTO locationRequestDTO = eventRequestDTO.getLocation();
+        EventStateRequestDTO eventStateRequestDTO = eventRequestDTO.getEventState();
+        Set<EventCategoryRequestDTO> eventCategoryRequestDTOS = eventRequestDTO.getEventCategories();
 
         Date date = dateRepository.findByBeginDateAndEndDate(
                         dateRequestDTO.getBeginDate(), dateRequestDTO.getEndDate())
                 .orElseThrow(() -> new ResourceNotFoundException("date not found"));
         Location location = locationRepository.findByAddressAndDistrict_NameAndDistrict_Department_Name(
-                        locationRequestDTO.getAddress(), locationRequestDTO.getDistrictRequestDTO().getName(),
-                        locationRequestDTO.getDistrictRequestDTO().getDepartmentRequestDTO().getName())
+                        locationRequestDTO.getAddress(), locationRequestDTO.getDistrict().getName(),
+                        locationRequestDTO.getDistrict().getDepartment().getName())
                 .orElseThrow(() -> new ResourceNotFoundException("location not found"));
         EventState eventState = eventStateRepository.findByName(eventStateRequestDTO.getName())
                 .orElseThrow(() -> new ResourceNotFoundException("event state not found"));
@@ -95,7 +95,7 @@ public class EventService {
 
 
         Event updateEvent = event.get();
-        updateEvent.setTitle(eventRequestDTO.getName());
+        updateEvent.setTitle(eventRequestDTO.getTitle());
         updateEvent.setDescription(eventRequestDTO.getDescription());
         updateEvent.setDate(date);
         updateEvent.setLocation(location);
@@ -144,8 +144,8 @@ public class EventService {
     public List<EventResponseDTO> getEventByLocation(LocationRequestDTO locationRequestDTO) {
 
         Location location = locationRepository.findByAddressAndDistrict_NameAndDistrict_Department_Name(
-                        locationRequestDTO.getAddress(), locationRequestDTO.getDistrictRequestDTO().getName(),
-                        locationRequestDTO.getDistrictRequestDTO().getDepartmentRequestDTO().getName())
+                        locationRequestDTO.getAddress(), locationRequestDTO.getDistrict().getName(),
+                        locationRequestDTO.getDistrict().getDepartment().getName())
                 .orElseThrow(() -> new ResourceNotFoundException("location not found"));
 
 
@@ -166,7 +166,7 @@ public class EventService {
         List<Date> dates = dateRepository.findAllByBeginDateGreaterThanEqualAndEndDateLessThanEqual(
                         dateRequestDTO.getBeginDate(), dateRequestDTO.getEndDate());
         if (dates.isEmpty()) {
-            throw new ResourceNotFoundException("date not found between"+ dateRequestDTO.getBeginDate() + " and "+dateRequestDTO.getEndDate());
+            throw new ResourceNotFoundException("date not found between "+ dateRequestDTO.getBeginDate() + " and "+dateRequestDTO.getEndDate());
         }
         List<Event> events = new ArrayList<>();
         for (Date date : dates) {

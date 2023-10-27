@@ -31,8 +31,8 @@ public class LocationService {
 
     public  LocationResponseDTO createLocation( LocationRequestDTO dto){
 
-        String districtName = dto.getDistrictRequestDTO().getName();
-        String departmentName = dto.getDistrictRequestDTO().getDepartmentRequestDTO().getName();
+        String districtName = dto.getDistrict().getName();
+        String departmentName = dto.getDistrict().getDepartment().getName();
 
         Optional<District> optionalDistrict =districtRepository.findByNameAndDepartment_Name(districtName,departmentName);
         if(optionalDistrict.isEmpty()){
@@ -56,7 +56,7 @@ public class LocationService {
         if (optionalLocation.isEmpty()) {
             throw new ResourceNotFoundException("location not found with id: " + locationId);
         }
-        Optional<District> optionalDistrict = districtRepository.findByNameAndDepartment_Name(dto.getDistrictRequestDTO().getName(), dto.getDistrictRequestDTO().getDepartmentRequestDTO().getName());
+        Optional<District> optionalDistrict = districtRepository.findByNameAndDepartment_Name(dto.getDistrict().getName(), dto.getDistrict().getDepartment().getName());
         if (optionalDistrict.isEmpty()) {
             throw new ResourceNotFoundException("District and Deparmetn not found with names: ");
 

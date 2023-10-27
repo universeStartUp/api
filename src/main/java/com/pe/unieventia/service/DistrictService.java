@@ -33,7 +33,7 @@ public class DistrictService {
 
     public DistrictResponseDTO getDistrictByName(DistrictRequestDTO dto) {
 
-        Optional<District> district = repository.findByNameAndDepartment_Name(dto.getName(), dto.getDepartmentRequestDTO().getName());
+        Optional<District> district = repository.findByNameAndDepartment_Name(dto.getName(), dto.getDepartment().getName());
         if (district.isEmpty()) {
             throw new ResourceNotFoundException("District not found");
         }
@@ -45,7 +45,7 @@ public class DistrictService {
     public DistrictResponseDTO createDistrict(DistrictRequestDTO dto) {
         District resource = mapper.resourceToEntity(dto);
 
-        if (repository.existsByNameAndDepartment_Name(dto.getName(), dto.getDepartmentRequestDTO().getName())) {
+        if (repository.existsByNameAndDepartment_Name(dto.getName(), dto.getDepartment().getName())) {
             throw new ResourceAlreadyExistsException("District with this name and department name exists");
         }
 
@@ -65,7 +65,7 @@ public class DistrictService {
     @Transactional
     public DistrictResponseDTO updateDistrict(Long id, DistrictRequestDTO requestDTO) {
         Optional<District> optionalDistrict = repository.findById(id);
-        String strDepartment = requestDTO.getDepartmentRequestDTO().getName();
+        String strDepartment = requestDTO.getDepartment().getName();
         Optional<Department> optionalDepartment = departmentRepository.findByName(strDepartment);
 
         if (optionalDistrict.isEmpty()) {

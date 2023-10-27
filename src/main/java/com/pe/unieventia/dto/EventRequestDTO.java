@@ -13,15 +13,15 @@ import java.util.Set;
 @NoArgsConstructor
 public class EventRequestDTO {
     @NotBlank
-    private String name;
+    private String title;
     @NotBlank
     private String description;
     @NotNull
-    private DateRequestDTO dateRequestDTO;
+    private DateRequestDTO date;
     @NotNull
-    private LocationRequestDTO locationRequestDTO;
+    private LocationRequestDTO location;
     @NotNull
-    private Set<EventCategoryRequestDTO> eventCategoryRequestDTOS;
+    private Set<EventCategoryRequestDTO> eventCategories;
     @NotNull
-    private EventStateRequestDTO eventStateRequestDTO;
+    private EventStateRequestDTO eventState;
 }

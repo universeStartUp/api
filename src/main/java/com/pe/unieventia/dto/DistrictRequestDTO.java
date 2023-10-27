@@ -13,5 +13,5 @@ public class DistrictRequestDTO {
     @NotBlank
     private String name;
     @NotNull
-    private DepartmentRequestDTO departmentRequestDTO;
+    private DepartmentRequestDTO department;
 }

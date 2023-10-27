@@ -11,10 +11,10 @@ import java.util.Set;
 @NoArgsConstructor
 public class EventResponseDTO {
     private Long id;
-    private String name;
+    private String title;
     private String description;
-    private DistrictResponseDTO districtResponseDTO;
-    private LocationResponseDTO locationResponseDTO;
-    private Set<EventCategoryResponseDTO> eventCategoryResponseDTOS;
-    private EventStateResponseDTO eventStateResponseDTO;
+    private DateResponseDTO date;
+    private LocationResponseDTO location;
+    private Set<EventCategoryResponseDTO> eventCategories;
+    private EventStateResponseDTO eventState;
 }

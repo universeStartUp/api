@@ -15,5 +15,5 @@ public class LocationRequestDTO {
     @Size(max = 255)
     private String address;
     @NotNull
-    private DistrictRequestDTO districtRequestDTO;
+    private DistrictRequestDTO district;
 }

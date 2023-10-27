@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 public class LocationResponseDTO {
     private Long id;
     private String address;
-    private DistrictResponseDTO districtResponseDTO;
+    private DistrictResponseDTO district;
 }

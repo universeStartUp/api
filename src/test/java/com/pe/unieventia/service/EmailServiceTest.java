@@ -39,22 +39,25 @@ public class EmailServiceTest {
     public void testCreateEmail() {
         // Arrange
         String emailAddress = "michael@ui.edu.com";
+
+        // Process
         String[] parts = emailAddress.split("@");
+
+        when(emailRepository.existsByLocalAndEmailDomain_Domain(parts[0], parts[1])).thenReturn(Boolean.FALSE);
 
         University university = new University();
         university.setName("Universidad Internacional");
         university.setAbbreviation("UI");
-
         EmailDomain emailDomain = new EmailDomain();
         emailDomain.setDomain(parts[1]);
         emailDomain.setUniversity(university);
+
+        when(emailDomainRepository.findByDomain(parts[1])).thenReturn(Optional.of(emailDomain));
 
         Email email = new Email();
         email.setLocal(parts[0]);
         email.setEmailDomain(emailDomain);
 
-        when(emailRepository.existsByLocalAndEmailDomain_Domain(parts[0], parts[1])).thenReturn(Boolean.FALSE);
-        when(emailDomainRepository.findByDomain(parts[1])).thenReturn(Optional.of(emailDomain));
         when(emailRepository.save(email)).thenReturn(email);
 
         // Act
@@ -66,10 +69,13 @@ public class EmailServiceTest {
     public void testCreateEmailAlreadyExist() {
         // Arrange
         String emailAddress = "michael@ui.edu.com";
+
+        // Process
         String[] parts = emailAddress.split("@");
 
         when(emailRepository.existsByLocalAndEmailDomain_Domain(parts[0], parts[1])).thenReturn(Boolean.TRUE);
 
+        // Act
         assertThrows(
             ResourceAlreadyExistsException.class,
             () -> {
@@ -82,16 +88,16 @@ public class EmailServiceTest {
     public void testCreateEmailInvalidDomain() {
         // Arrange
         String emailAddress = "michael@ui.edu.com";
+
+        // Process
         String[] parts = emailAddress.split("@");
 
         when(emailRepository.existsByLocalAndEmailDomain_Domain(parts[0], parts[1])).thenReturn(Boolean.FALSE);
         when(emailDomainRepository.findByDomain(parts[1])).thenReturn(Optional.empty());
-        
-        assertThrows(
-            ValidationException.class,
-            () -> {
+
+        // Act
+        assertThrows(ValidationException.class, () -> {
                 emailService.createEmail(emailAddress);
-            }
-        );
+        });
     }
 }

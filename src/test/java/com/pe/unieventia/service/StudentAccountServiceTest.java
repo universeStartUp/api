@@ -30,10 +30,7 @@ import com.pe.unieventia.student_account.domain.service.StudentAccountService;
 import com.pe.unieventia.student_account.dto.StudentAccountResponseDTO;
 import com.pe.unieventia.student_account.mapper.StudentAccountMapper;
 
-import jakarta.validation.Validation;
-
-public class StudentAccountTest {
-    /*
+public class StudentAccountServiceTest {
     @InjectMocks
     private StudentAccountService studentAccountService;
 
@@ -52,7 +49,7 @@ public class StudentAccountTest {
     }
 
     @Test
-    public void testCreateStudentAccount() {
+    public void testCreateStudentAccountSuccess() {
         //Arrange
         String surname = "Mitch";
         String firstName = "Michael";
@@ -62,11 +59,15 @@ public class StudentAccountTest {
         String emailAddress = "u202015237@ui.edu.com";
         String password = "password";
 
+        String universityName = "Universidad Internacional";
+        String universityAbbreviation = "UI";
+
+        // Process
         String[] parts = emailAddress.split("@");
 
         University university = new University();
-        university.setName("Universidad Internacional");
-        university.setAbbreviation("UI");
+        university.setName(universityName);
+        university.setAbbreviation(universityAbbreviation);
         EmailDomain emailDomain = new EmailDomain();
         emailDomain.setDomain(parts[1]);
         emailDomain.setUniversity(university);
@@ -80,37 +81,43 @@ public class StudentAccountTest {
         student.setStudentCode(studentCode);
         student.setPhoneNumber(phoneNumber);
         student.setEmail(email);
+
+
         GoogleInfo googleInfo = new GoogleInfo();
         googleInfo.setAccessToken("0");
         googleInfo.setRefreshToken("0");
+
+
         StudentAccount studentAccount = new StudentAccount();
         studentAccount.setStudent(student);
         studentAccount.setPassword(password);
         studentAccount.setGoogleInfo(googleInfo);
-        studentAccount.setCreationDateTime(LocalDateTime.now());
-            
+        LocalDateTime now = LocalDateTime.now();
+        studentAccount.setCreationDateTime(now);
+
+
         UniversityResponseDTO universityResponseDTO = new UniversityResponseDTO();
         universityResponseDTO.setUniversityId(1L);
-        universityResponseDTO.setName(university.getName());
-        universityResponseDTO.setAbbreviation(university.getAbbreviation());
+        universityResponseDTO.setName(universityName);
+        universityResponseDTO.setAbbreviation(universityAbbreviation);
         EmailResponseDTO emailResponseDTO = new EmailResponseDTO();
         emailResponseDTO.setEmailId(1L);
-        emailResponseDTO.setLocal(email.getLocal());
-        emailResponseDTO.setDomain(email.getEmailDomain().getDomain());
+        emailResponseDTO.setLocal(parts[0]);
+        emailResponseDTO.setDomain(parts[1]);
         emailResponseDTO.setUniversity(universityResponseDTO);
         StudentResponseDTO studentResponseDTO = new StudentResponseDTO();
         studentResponseDTO.setStudentId(1L);
-        studentResponseDTO.setSurname(student.getSurname());
-        studentResponseDTO.setFirstName(student.getFirstName());
-        studentResponseDTO.setLastName(student.getLastName());
-        studentResponseDTO.setPhoneNumber(student.getPhoneNumber());
-        studentResponseDTO.setStudentCode(student.getStudentCode());
+        studentResponseDTO.setSurname(surname);
+        studentResponseDTO.setFirstName(firstName);
+        studentResponseDTO.setLastName(lastName);
+        studentResponseDTO.setPhoneNumber(phoneNumber);
+        studentResponseDTO.setStudentCode(studentCode);
         studentResponseDTO.setEmail(emailResponseDTO);
         StudentAccountResponseDTO studentAccountResponseDTO = new StudentAccountResponseDTO();
         studentAccountResponseDTO.setStudentAccountId(1L);
         studentAccountResponseDTO.setStudent(studentResponseDTO);
-        studentAccountResponseDTO.setCreationDateTime(studentAccount.getCreationDateTime());
-        
+        studentAccountResponseDTO.setCreationDateTime(now);
+
         when(studentService.createStudent(
                 surname,
                 firstName,
@@ -118,26 +125,26 @@ public class StudentAccountTest {
                 studentCode,
                 phoneNumber,
                 emailAddress
-            )
-        ).thenReturn(student);
+        )).thenReturn(student);
+        when(googleInfoService.createDefault()).thenReturn(googleInfo);
         when(studentAccountRepository.save(studentAccount)).thenReturn(studentAccount);
         when(studentAccountMapper.entityToResponseDto(studentAccount)).thenReturn(studentAccountResponseDTO);
 
         // Act
         StudentAccountResponseDTO result = studentAccountService.createStudentAccount(
-            surname,
-            firstName,
-            lastName,
-            studentCode,
-            phoneNumber,
-            emailAddress,
-            password
+                surname,
+                firstName,
+                lastName,
+                studentCode,
+                phoneNumber,
+                emailAddress,
+                password
         );
         assertEquals(studentAccountResponseDTO, result);
     }
 
     @Test
-    public void testCreateStudentAccount() {
+    public void testCreateStudentAccountAlreadyExist() {
         //Arrange
         String surname = "Mitch";
         String firstName = "Michael";
@@ -149,77 +156,61 @@ public class StudentAccountTest {
 
         String[] parts = emailAddress.split("@");
 
-        University university = new University();
-        university.setName("Universidad Internacional");
-        university.setAbbreviation("UI");
-        EmailDomain emailDomain = new EmailDomain();
-        emailDomain.setDomain(parts[1]);
-        emailDomain.setUniversity(university);
-        Email email = new Email();
-        email.setLocal(parts[0]);
-        email.setEmailDomain(emailDomain);
-        Student student = new Student();
-        student.setSurname(surname);
-        student.setFirstName(firstName);
-        student.setLastName(lastName);
-        student.setStudentCode(studentCode);
-        student.setPhoneNumber(phoneNumber);
-        student.setEmail(email);
-        GoogleInfo googleInfo = new GoogleInfo();
-        googleInfo.setAccessToken("0");
-        googleInfo.setRefreshToken("0");
-        StudentAccount studentAccount = new StudentAccount();
-        studentAccount.setStudent(student);
-        studentAccount.setPassword(password);
-        studentAccount.setGoogleInfo(googleInfo);
-        studentAccount.setCreationDateTime(LocalDateTime.now());
-            
-        UniversityResponseDTO universityResponseDTO = new UniversityResponseDTO();
-        universityResponseDTO.setUniversityId(1L);
-        universityResponseDTO.setName(university.getName());
-        universityResponseDTO.setAbbreviation(university.getAbbreviation());
-        EmailResponseDTO emailResponseDTO = new EmailResponseDTO();
-        emailResponseDTO.setEmailId(1L);
-        emailResponseDTO.setLocal(email.getLocal());
-        emailResponseDTO.setDomain(email.getEmailDomain().getDomain());
-        emailResponseDTO.setUniversity(universityResponseDTO);
-        StudentResponseDTO studentResponseDTO = new StudentResponseDTO();
-        studentResponseDTO.setStudentId(1L);
-        studentResponseDTO.setSurname(student.getSurname());
-        studentResponseDTO.setFirstName(student.getFirstName());
-        studentResponseDTO.setLastName(student.getLastName());
-        studentResponseDTO.setPhoneNumber(student.getPhoneNumber());
-        studentResponseDTO.setStudentCode(student.getStudentCode());
-        studentResponseDTO.setEmail(emailResponseDTO);
-        StudentAccountResponseDTO studentAccountResponseDTO = new StudentAccountResponseDTO();
-        studentAccountResponseDTO.setStudentAccountId(1L);
-        studentAccountResponseDTO.setStudent(studentResponseDTO);
-        studentAccountResponseDTO.setCreationDateTime(studentAccount.getCreationDateTime());
-        
         when(studentService.createStudent(
-                surname,
-                firstName,
-                lastName,
-                studentCode,
-                phoneNumber,
-                emailAddress
-            )
-        )
-        // Act
-        StudentAccountResponseDTO result = studentAccountService.createStudentAccount(
-            surname,
-            firstName,
-            lastName,
-            studentCode,
-            phoneNumber,
-            emailAddress,
-            password
-        );
-        assertThrows(
-            ValidationException.class,
-            () -> {
-                emailService.createEmail(emailAddress);
-            }
-        );
-    }*/
+                        surname,
+                        firstName,
+                        lastName,
+                        studentCode,
+                        phoneNumber,
+                        emailAddress
+        )).thenThrow(new ResourceAlreadyExistsException("Email " + emailAddress + " is already registered"));
+
+        assertThrows(ResourceAlreadyExistsException.class, () -> {
+            studentAccountService.createStudentAccount(
+                    surname,
+                    firstName,
+                    lastName,
+                    studentCode,
+                    phoneNumber,
+                    emailAddress,
+                    password
+            );
+        });
+    }
+
+    @Test
+    public void testCreateStudentAccountValidationException() {
+        //Arrange
+        String surname = "Mitch";
+        String firstName = "Michael";
+        String lastName = "Chavez";
+        String studentCode = "u202015237";
+        String phoneNumber = "942675143";
+        String emailAddress = "u202015237@ui.edu.com";
+        String password = "password";
+
+        String[] parts = emailAddress.split("@");
+        when(studentService.createStudent(
+                        surname,
+                        firstName,
+                        lastName,
+                        studentCode,
+                        phoneNumber,
+                        emailAddress
+                )
+        ).thenThrow(new ValidationException("Email domain " + parts[1] + " is not a valid domain"));
+
+        assertThrows(ValidationException.class, () -> {
+            studentAccountService.createStudentAccount(
+                    surname,
+                    firstName,
+                    lastName,
+                    studentCode,
+                    phoneNumber,
+                    emailAddress,
+                    password
+            );
+        });
+    }
+
 }

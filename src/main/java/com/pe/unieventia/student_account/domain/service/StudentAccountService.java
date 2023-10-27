@@ -51,6 +51,8 @@ public class StudentAccountService {
         studentAccount.setGoogleInfo(googleInfo);
         studentAccount.setCreationDateTime(LocalDateTime.now());
 
-        return studentAccountMapper.entityToResponseDto(studentAccountRepository.save(studentAccount));
+        studentAccount = studentAccountRepository.save(studentAccount);
+
+        return studentAccountMapper.entityToResponseDto(studentAccount);
     }
 }

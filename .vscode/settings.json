@@ -2,5 +2,5 @@
     "java.compile.nullAnalysis.mode": "automatic",
     "java.dependency.packagePresentation": "hierarchical",
     "java.configuration.updateBuildConfiguration": "interactive",
-    "java.project.explorer.showNonJavaResources": false
+    "java.project.explorer.showNonJavaResources": true
 }

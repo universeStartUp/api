@@ -1,5 +1,6 @@
 *.iml
 *.iws
 *.ipr
+.vscode
 .idea
 target

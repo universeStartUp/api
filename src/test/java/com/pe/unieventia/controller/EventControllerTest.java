@@ -1,7 +1,8 @@
 package com.pe.unieventia.controller;
 
-import com.pe.unieventia.dto.*;
-import com.pe.unieventia.service.EventService;
+import com.pe.unieventia.event.api.EventController;
+import com.pe.unieventia.event.dto.*;
+import com.pe.unieventia.event.domain.service.EventService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

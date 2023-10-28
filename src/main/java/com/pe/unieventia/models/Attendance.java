@@ -1,40 +1,45 @@
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+package com.pe.unieventia.models;
+
+import javax.persistence.*;
 
 @Entity
+@Table(name = "AttendanceLists")
+@IdClass(AttendanceId.class)
 public class Attendance {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int attendanceStateId ;
-    private int userId;
-    private int eventId;
+    @ManyToOne
+    @JoinColumn(name = "eventId", referencedColumnName = "eventId")
+    private Event event;
 
-    // Getters
-    public int getAttendanceStateId() {
-        return attendanceStateId;
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "studentId", referencedColumnName = "studentId")
+    private Student student;
+
+    private Integer attendanceStateId;
+
+    public void setStudent(Student student) {
+        if (student != null) {
+            this.student = student;
+        } else {
+            throw new IllegalArgumentException("Student cannot be null");
+        }
     }
 
-    public int getUserId() {
-        return userId;
+    public void setEvent(Event event) {
+        if (event != null) {
+            this.event = event;
+        } else {
+            throw new IllegalArgumentException("Event cannot be null");
+        }
     }
 
-    public int getEventId() {
-        return eventId;
-    }
+    // Getters, setters
+}
 
-    // Setters
-    public void setAttendanceStateId(int attendanceStateId) {
-        this.attendanceStateId = attendanceStateId;
-    }
+class AttendanceId {
+    private Integer eventId;
+    private Integer studentId;
 
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    public void setEventId(int eventId) {
-        this.eventId = eventId;
-    }
 }

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Student</title>
+</head>
+<body>
+<form action="#" th:action="@{/add-student}" th:object="${student}" method="post">
+    <div>
+        <label for="firstname">First Name:</label>
+        <input type="text" th:field="*{firstname}" id="firstname" />
+    </div>
+    <div>
+        <label for="lastname">Last Name:</label>
+        <input type="text" th:field="*{lastname}" id="lastname" />
+    </div>
+    <!-- Puedes agregar los otros campos aquí. -->
+    <div>
+        <input type="submit" value="Add Student" />
+    </div>
+</form>
+</body>
+</html>

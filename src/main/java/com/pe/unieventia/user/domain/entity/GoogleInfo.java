@@ -1,4 +1,4 @@
-package com.pe.unieventia.student_account.domain.entity;
+package com.pe.unieventia.user.domain.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

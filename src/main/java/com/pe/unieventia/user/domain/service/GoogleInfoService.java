@@ -1,9 +1,9 @@
-package com.pe.unieventia.student_account.domain.service;
+package com.pe.unieventia.user.domain.service;
 
 import org.springframework.stereotype.Service;
 
-import com.pe.unieventia.student_account.domain.entity.GoogleInfo;
-import com.pe.unieventia.student_account.domain.persistence.GoogleInfoRepository;
+import com.pe.unieventia.user.domain.entity.GoogleInfo;
+import com.pe.unieventia.user.domain.persistence.GoogleInfoRepository;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;

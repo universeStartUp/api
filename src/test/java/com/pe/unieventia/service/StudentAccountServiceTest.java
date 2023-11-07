@@ -4,8 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
-import java.time.LocalDateTime;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -14,21 +12,11 @@ import org.mockito.MockitoAnnotations;
 
 import com.pe.unieventia.shared.exception.ResourceAlreadyExistsException;
 import com.pe.unieventia.shared.exception.ValidationException;
-import com.pe.unieventia.student.domain.entity.Email;
-import com.pe.unieventia.student.domain.entity.EmailDomain;
-import com.pe.unieventia.student.domain.entity.Student;
-import com.pe.unieventia.student.domain.entity.University;
 import com.pe.unieventia.student.domain.service.StudentService;
-import com.pe.unieventia.student.dto.EmailResponseDTO;
-import com.pe.unieventia.student.dto.StudentResponseDTO;
-import com.pe.unieventia.student.dto.UniversityResponseDTO;
-import com.pe.unieventia.student_account.domain.entity.GoogleInfo;
-import com.pe.unieventia.student_account.domain.entity.StudentAccount;
-import com.pe.unieventia.student_account.domain.persistence.StudentAccountRepository;
-import com.pe.unieventia.student_account.domain.service.GoogleInfoService;
-import com.pe.unieventia.student_account.domain.service.StudentAccountService;
-import com.pe.unieventia.student_account.dto.StudentAccountResponseDTO;
-import com.pe.unieventia.student_account.mapper.StudentAccountMapper;
+import com.pe.unieventia.user.domain.persistence.StudentAccountRepository;
+import com.pe.unieventia.user.domain.service.GoogleInfoService;
+import com.pe.unieventia.user.domain.service.StudentAccountService;
+import com.pe.unieventia.user.mapper.StudentAccountMapper;
 
 public class StudentAccountServiceTest {
     @InjectMocks

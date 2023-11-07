@@ -1,4 +1,4 @@
-package com.pe.unieventia.student_account.api;
+package com.pe.unieventia.user.api;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pe.unieventia.student_account.domain.service.StudentAccountService;
-import com.pe.unieventia.student_account.dto.SignUpDTO;
-import com.pe.unieventia.student_account.dto.StudentAccountResponseDTO;
+import com.pe.unieventia.user.domain.service.StudentAccountService;
+import com.pe.unieventia.user.dto.SignUpRequestDTO;
+import com.pe.unieventia.user.dto.StudentAccountResponseDTO;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -21,15 +21,15 @@ public class StudentAccountController {
     private final StudentAccountService studentAccountService;
 
     @PostMapping
-    private ResponseEntity<StudentAccountResponseDTO> signUp(@Valid @RequestBody SignUpDTO signUpDTO) {
+    private ResponseEntity<StudentAccountResponseDTO> signUp(@Valid @RequestBody SignUpRequestDTO signUpRequestDTO) {
         StudentAccountResponseDTO studentAccountResponseResource = studentAccountService.createStudentAccount(
-            signUpDTO.getSurname(),
-            signUpDTO.getFirstName(),
-            signUpDTO.getLastName(),
-            signUpDTO.getStudentCode(),
-            signUpDTO.getPhoneNumber(),
-            signUpDTO.getEmailAddress(),
-            signUpDTO.getPassword()
+            signUpRequestDTO.getSurname(),
+            signUpRequestDTO.getFirstName(),
+            signUpRequestDTO.getLastName(),
+            signUpRequestDTO.getStudentCode(),
+            signUpRequestDTO.getPhoneNumber(),
+            signUpRequestDTO.getEmailAddress(),
+            signUpRequestDTO.getPassword()
         );
 
         return new ResponseEntity<>(studentAccountResponseResource, HttpStatus.CREATED);

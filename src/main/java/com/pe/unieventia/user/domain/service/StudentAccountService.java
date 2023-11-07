@@ -1,4 +1,4 @@
-package com.pe.unieventia.student_account.domain.service;
+package com.pe.unieventia.user.domain.service;
 
 import java.time.LocalDateTime;
 
@@ -7,11 +7,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.pe.unieventia.student.domain.entity.Student;
 import com.pe.unieventia.student.domain.service.StudentService;
-import com.pe.unieventia.student_account.domain.entity.GoogleInfo;
-import com.pe.unieventia.student_account.domain.entity.StudentAccount;
-import com.pe.unieventia.student_account.domain.persistence.StudentAccountRepository;
-import com.pe.unieventia.student_account.dto.StudentAccountResponseDTO;
-import com.pe.unieventia.student_account.mapper.StudentAccountMapper;
+import com.pe.unieventia.user.domain.entity.GoogleInfo;
+import com.pe.unieventia.user.domain.entity.StudentAccount;
+import com.pe.unieventia.user.domain.persistence.StudentAccountRepository;
+import com.pe.unieventia.user.dto.StudentAccountResponseDTO;
+import com.pe.unieventia.user.mapper.StudentAccountMapper;
 
 import lombok.RequiredArgsConstructor;
 

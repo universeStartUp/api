@@ -1,4 +1,4 @@
-package com.pe.unieventia.student_account.dto;
+package com.pe.unieventia.user.dto;
 
 import java.time.LocalDateTime;
 

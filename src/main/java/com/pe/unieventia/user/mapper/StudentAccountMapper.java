@@ -1,12 +1,12 @@
-package com.pe.unieventia.student_account.mapper;
+package com.pe.unieventia.user.mapper;
 
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
-import com.pe.unieventia.student_account.domain.entity.StudentAccount;
-import com.pe.unieventia.student_account.dto.StudentAccountResponseDTO;
+import com.pe.unieventia.user.domain.entity.StudentAccount;
+import com.pe.unieventia.user.dto.StudentAccountResponseDTO;
 
 @Component
 public class StudentAccountMapper {

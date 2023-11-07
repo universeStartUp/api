@@ -1,5 +1,6 @@
 package com.pe.unieventia.student.domain.service;
 
+import com.pe.unieventia.user.domain.entity.User;
 import org.springframework.stereotype.Service;
 
 import com.pe.unieventia.student.domain.entity.Email;
@@ -16,26 +17,20 @@ import lombok.RequiredArgsConstructor;
 public class StudentService {
     private final StudentRepository studentRepository;
     private final StudentMapper studentMapper;
-
     private final EmailService emailService;
     
     @Transactional
     public Student createStudent(
         String surname,
-        String firstName,
-        String lastName,
         String studentCode,
-        String phoneNumber,
-        String emailAddress
+        User user
     ) {
-        Email email = emailService.createEmail(emailAddress);
-        Student student = new Student();
-        student.setSurname(surname);
-        student.setFirstName(firstName);
-        student.setLastName(lastName);
-        student.setStudentCode(studentCode);
-        student.setPhoneNumber(phoneNumber);
-        student.setEmail(email);
+        Student student = Student
+                .builder()
+                .user(user)
+                .surname(surname)
+                .studentCode(studentCode)
+                .build();
 
         return studentRepository.save(student);
     }
@@ -44,19 +39,14 @@ public class StudentService {
     public StudentResponseDTO createStudentResponseDto(
         String surname,
         String firstName,
-        String lastName,
-        String studentCode,
-        String phoneNumber,
-        String emailAddress
+        User user
     ) {
-        return studentMapper.entityToResponseDto(createStudent(
-                surname,
-                firstName,
-                lastName,
-                studentCode,
-                phoneNumber,
-                emailAddress
-            )
+        return studentMapper.entityToResponseDto(
+                this.createStudent(
+                        surname,
+                        firstName,
+                        user
+                )
         );
     }
     

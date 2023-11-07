@@ -1,13 +1,19 @@
-package com.pe.unieventia.student_account.dto;
+package com.pe.unieventia.user.dto;
 
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
-public class SignUpDTO {
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class SignUpRequestDTO {
     @NotBlank(message = "Surname cannot be empty")
     @Size(max = 20, message = "Surname length cannot be longer than 20 characters")
     private String surname;
@@ -20,9 +26,6 @@ public class SignUpDTO {
     @NotBlank(message = "Student code cannot be empty")
     @Size(max = 15, message = "Student code length cannot be longer than 15 characters")
     private String studentCode;
-    @NotBlank(message = "Phone number cannot be empty")
-    @Size(max = 30, message = "Phone number length cannot be longer than 30 characters")
-    private String phoneNumber;
     @NotBlank(message = "Email cannot be empty")
     @Email
     private String emailAddress;

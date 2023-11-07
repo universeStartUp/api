@@ -10,6 +10,6 @@ import java.util.Optional;
 
 @Repository
 public interface EmailDomainRepository extends JpaRepository<EmailDomain, Long> {
-    Optional<EmailDomain> findById(Long emailDomainId);
+    Optional<EmailDomain> findByEmailDomainId(Long emailDomainId);
     Optional<EmailDomain> findByDomain(String domain);
 }

@@ -1,11 +1,11 @@
-package com.pe.unieventia.student_account.mapper;
+package com.pe.unieventia.user.mapper;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
-import com.pe.unieventia.student_account.domain.entity.GoogleInfo;
-import com.pe.unieventia.student_account.dto.GoogleInfoDTO;
-import com.pe.unieventia.student_account.dto.GoogleInfoResponseDTO;
+import com.pe.unieventia.user.domain.entity.GoogleInfo;
+import com.pe.unieventia.user.dto.GoogleInfoDTO;
+import com.pe.unieventia.user.dto.GoogleInfoResponseDTO;
 
 @Component
 public class GoogleInfoMapper {

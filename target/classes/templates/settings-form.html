@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Notification Settings</title>
+</head>
+<body>
+<h2>Notification Settings Form</h2>
+<form th:action="@{/settings}" th:object="${settings}" method="post">
+    <label for="emailEnabled">Email notifications:</label>
+    <input type="checkbox" id="emailEnabled" th:field="*{emailEnabled}"><br>
+
+    <label for="smsEnabled">SMS notifications:</label>
+    <input type="checkbox" id="smsEnabled" th:field="*{smsEnabled}"><br>
+
+    <label for="receiveNewsletter">Receive newsletter:</label>
+    <input type="checkbox" id="receiveNewsletter" th:field="*{receiveNewsletter}"><br>
+
+    <label for="languagePreference">Language preference:</label>
+    <select id="languagePreference" th:field="*{languagePreference}">
+        <option value="en">English</option>
+        <option value="es">Spanish</option>
+        <!-- Add other languages as needed -->
+    </select><br>
+
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>

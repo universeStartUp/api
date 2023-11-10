@@ -7,17 +7,21 @@
 <body>
 <h2>Notification Settings Form</h2>
 <form th:action="@{/settings}" th:object="${settings}" method="post">
+
+    <!-- Campo oculto para enviar false si el checkbox no está marcado -->
     <label for="emailEnabled">Email notifications:</label>
-    <input type="checkbox" id="emailEnabled" th:field="*{emailEnabled}"><br>
+    <input type="checkbox" id="emailEnabled" name="emailEnabled" th:field="*{emailEnabled}"><br>
 
+    <!-- Campo oculto para enviar false si el checkbox no está marcado -->
     <label for="smsEnabled">SMS notifications:</label>
-    <input type="checkbox" id="smsEnabled" th:field="*{smsEnabled}"><br>
+    <input type="checkbox" id="smsEnabled" name="smsEnabled" th:field="*{smsEnabled}"><br>
 
+    <!-- Campo oculto para enviar false si el checkbox no está marcado -->
     <label for="receiveNewsletter">Receive newsletter:</label>
-    <input type="checkbox" id="receiveNewsletter" th:field="*{receiveNewsletter}"><br>
+    <input type="checkbox" id="receiveNewsletter" name="receiveNewsletter" th:field="*{receivedNewsletter}"><br>
 
     <label for="languagePreference">Language preference:</label>
-    <select id="languagePreference" th:field="*{languagePreference}">
+    <select id="languagePreference" name="languagePreference" th:field="*{languagePreference}">
         <option value="en">English</option>
         <option value="es">Spanish</option>
         <!-- Add other languages as needed -->

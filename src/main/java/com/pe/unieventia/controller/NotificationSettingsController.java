@@ -18,7 +18,7 @@ public class NotificationSettingsController {
     public String handleNotificationSettingsSubmission(NotificationSettingsDto settings) {
         System.out.println("Email Enabled: " + settings.isEmailEnabled());
         System.out.println("SMS Enabled: " + settings.isSmsEnabled());
-        System.out.println("Receive Newsletter: " + settings.isReceiveNewsletter());
+        System.out.println("Receive Newsletter: " + settings.isReceivedNewsletter());
         System.out.println("Language Preference: " + settings.getLanguagePreference());
 
         return "settings-confirmation";

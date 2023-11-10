@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@Table(name = "Locations")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Location {

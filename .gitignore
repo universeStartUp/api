@@ -4,3 +4,5 @@
 .vscode
 .idea
 target
+resources/application.properties
+resources/application-aws.properties

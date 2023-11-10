@@ -11,6 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "EventCategories")
 public class EventCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

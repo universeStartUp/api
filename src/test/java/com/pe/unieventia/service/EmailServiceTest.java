@@ -45,7 +45,8 @@ public class EmailServiceTest {
         // Process
         String[] parts = emailAddress.split("@");
 
-        when(emailRepository.existsByLocalAndEmailDomain_Domain(parts[0], parts[1])).thenReturn(Boolean.FALSE);
+        when(emailRepository.existsByLocalAndEmailDomain_Domain(parts[0], parts[1]))
+                .thenReturn(Boolean.FALSE);
 
         University university = University.builder()
                 .name(universityName)

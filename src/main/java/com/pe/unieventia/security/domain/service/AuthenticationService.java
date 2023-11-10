@@ -1,6 +1,8 @@
 package com.pe.unieventia.security.domain.service;
 
 
+import com.pe.unieventia.security.domain.entity.GoogleInfo;
+import com.pe.unieventia.student.domain.entity.Email;
 import com.pe.unieventia.student.domain.service.EmailService;
 import com.pe.unieventia.security.domain.entity.Role;
 import com.pe.unieventia.security.domain.entity.User;
@@ -35,12 +37,15 @@ public class AuthenticationService {
     private final JwtService jwtService;
     @Transactional
     public UserResponseDTO signUp(SignUpRequestDTO request) {
-        var user = User.builder()
+        Email email = emailService.createEmail(request.getEmailAddress());
+        String encodedPassword = passwordEncoder.encode(request.getPassword());
+        GoogleInfo googleInfo = googleInfoService.createDefault();
+        User user = User.builder()
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())
-                .email(emailService.createEmail(request.getEmailAddress()))
-                .password(passwordEncoder.encode(request.getPassword()))
-                .googleInfo(googleInfoService.createDefault())
+                .email(email)
+                .password(encodedPassword)
+                .googleInfo(googleInfo)
                 .creationDateTime(LocalDateTime.now())
                 .role(Role.STUDENT)
                 .build();

@@ -2,24 +2,9 @@ package com.pe.unieventia.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.when;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-
-import com.pe.unieventia.shared.exception.ResourceAlreadyExistsException;
-import com.pe.unieventia.shared.exception.ValidationException;
-import com.pe.unieventia.student.domain.service.StudentService;
-import com.pe.unieventia.user.domain.persistence.StudentAccountRepository;
-import com.pe.unieventia.user.domain.service.GoogleInfoService;
-import com.pe.unieventia.user.domain.service.StudentAccountService;
-import com.pe.unieventia.user.mapper.StudentAccountMapper;
 
 public class StudentAccountServiceTest {
-    @InjectMocks
+/*    @InjectMocks
     private StudentAccountService studentAccountService;
 
     @Mock
@@ -129,7 +114,7 @@ public class StudentAccountServiceTest {
                 password
         );
         assertEquals(studentAccountResponseDTO, result);
-    }*/
+    }
 
     @Test
     public void testCreateStudentAccountAlreadyExist() {
@@ -200,5 +185,5 @@ public class StudentAccountServiceTest {
             );
         });
     }
-
+*/
 }

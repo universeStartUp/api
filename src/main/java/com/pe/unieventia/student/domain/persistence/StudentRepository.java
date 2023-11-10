@@ -10,4 +10,5 @@ import com.pe.unieventia.student.domain.entity.Student;
 @Repository
 public interface StudentRepository extends JpaRepository<Student, Long> {
     Optional<Student> findByStudentId(Long studentId);
+    Boolean existsStudentByUser_UserId(Long userId);
 }

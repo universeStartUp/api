@@ -1,9 +1,9 @@
 package com.pe.unieventia.student.domain.service;
 
-import com.pe.unieventia.user.domain.entity.User;
+import com.pe.unieventia.security.domain.entity.User;
+import com.pe.unieventia.shared.exception.ResourceAlreadyExistsException;
 import org.springframework.stereotype.Service;
 
-import com.pe.unieventia.student.domain.entity.Email;
 import com.pe.unieventia.student.domain.entity.Student;
 import com.pe.unieventia.student.domain.persistence.StudentRepository;
 import com.pe.unieventia.student.dto.StudentResponseDTO;
@@ -20,22 +20,25 @@ public class StudentService {
     private final EmailService emailService;
     
     @Transactional
-    public Student createStudent(
+    public Student signUp(
+        User user,
         String surname,
-        String studentCode,
-        User user
+        String studentCode
     ) {
-        Student student = Student
-                .builder()
-                .user(user)
-                .surname(surname)
-                .studentCode(studentCode)
-                .build();
+        if (studentRepository.existsStudentByUser_UserId(user.getUserId())) {
+            throw new ResourceAlreadyExistsException("User with id" + user.getUserId() + " is already registered as student.");
+        } else {
+            Student student = Student.builder()
+                    .user(user)
+                    .surname(surname)
+                    .studentCode(studentCode)
+                    .build();
 
-        return studentRepository.save(student);
+            return studentRepository.save(student);
+        }
     }
 
-    @Transactional
+    /*@Transactional
     public StudentResponseDTO createStudentResponseDto(
         String surname,
         String firstName,
@@ -48,6 +51,6 @@ public class StudentService {
                         user
                 )
         );
-    }
-    
+    }*/
+
 }

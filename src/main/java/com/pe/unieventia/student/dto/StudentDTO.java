@@ -10,12 +10,6 @@ public class StudentDTO {
     @NotBlank(message = "Surname cannot be empty")
     @Size(max = 20, message = "Surname length cannot be longer than 20 characters")
     private String surname;
-    @NotBlank(message = "First name cannot be empty")
-    @Size(max = 50, message = "First name length cannot be longer than 50 characters")
-    private String firstName;
-    @NotBlank(message = "Last name cannot be empty")
-    @Size(max = 50, message = "Last name length cannot be longer than 50 characters")
-    private String lastName;
     @NotBlank(message = "Student code cannot be empty")
     @Size(max = 15, message = "Student code length cannot be longer than 15 characters")
     private String studentCode;

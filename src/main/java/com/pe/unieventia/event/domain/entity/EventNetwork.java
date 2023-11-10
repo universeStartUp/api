@@ -15,7 +15,7 @@ public class EventNetwork
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String TwitterURL;
-    private String FacebookURL;
-    private String InstagramURL;
+    private String twitterURL;
+    private String facebookURL;
+    private String instagramURL;
 }

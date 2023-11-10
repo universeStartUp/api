@@ -36,4 +36,8 @@ public class Event {
     joinColumns = @JoinColumn(name = "event_id"),
     inverseJoinColumns = @JoinColumn(name="event_categories_id"))
     Set<EventCategory> eventCategories;
+
+    @OneToOne
+    @JoinColumn(name="event_network_id")
+    private EventNetwork eventNetwork;
 }

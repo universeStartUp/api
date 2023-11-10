@@ -120,6 +120,18 @@ public class EventControllerTest {
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertEquals(eventResponseDTOList, responseEntity.getBody());
     }
+    @Test
+    public void testGetEventNetworks() {
+        Long id = 1L;
+        EventNetworkResponseDTO eventNetworkResponseDTO = new EventNetworkResponseDTO();
+        eventNetworkResponseDTO.setId(id);
+        when(eventService.getEventNetworkByEventId(id)).thenReturn(eventNetworkResponseDTO);
+
+        ResponseEntity<EventNetworkResponseDTO> responseEntity = eventController.getEventNetworks(id);
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        assertEquals(eventNetworkResponseDTO, responseEntity.getBody());
+    }
+
 
 
 }

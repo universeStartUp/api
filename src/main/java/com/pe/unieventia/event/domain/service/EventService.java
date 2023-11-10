@@ -5,6 +5,7 @@ import com.pe.unieventia.event.domain.entity.*;
 import com.pe.unieventia.event.domain.repository.*;
 import com.pe.unieventia.event.dto.*;
 import com.pe.unieventia.event.mapper.EventMapper;
+import com.pe.unieventia.event.mapper.EventNetworkMapper;
 import com.pe.unieventia.shared.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,8 @@ public class EventService {
     private final EventStateRepository eventStateRepository;
     private final EventCategoryRepository eventCategoryRepository;
     private final EventMapper eventMapper;
+    private final EventNetworkMapper eventNetworkMapper;
+    private final EventNetworkRepository eventNetworkRepository;
 
     public EventResponseDTO createEvent(EventRequestDTO eventRequestDTO) {
 
@@ -27,6 +30,7 @@ public class EventService {
         LocationRequestDTO locationRequestDTO = eventRequestDTO.getLocation();
         EventStateRequestDTO eventStateRequestDTO = eventRequestDTO.getEventState();
         Set<EventCategoryRequestDTO> eventCategoryRequestDTOS = eventRequestDTO.getEventCategories();
+        EventNetworkRequestDTO eventNetworkRequestDTO = eventRequestDTO.getEventNetwork();
 
 
         Date date = dateRepository.findByBeginDateAndEndDate(
@@ -47,6 +51,13 @@ public class EventService {
         }
 
 
+       EventNetwork eventNetwork = eventNetworkRepository.findByInstagramURLOrFacebookURLOrTwitterURL(
+                        eventNetworkRequestDTO.getInstagramURL(), eventNetworkRequestDTO.getFacebookURL(),
+                        eventNetworkRequestDTO.getTwitterURL())
+                .orElseThrow(() -> new ResourceNotFoundException("event network not found"));
+
+
+
         Event event = new Event();
 
         event.setTitle(eventRequestDTO.getTitle());
@@ -55,6 +66,7 @@ public class EventService {
         event.setLocation(location);
         event.setEventState(eventState);
         event.setEventCategories(eventCategories);
+        event.setEventNetwork(eventNetwork);
 
         event = eventRepository.save(event);
         return eventMapper.entityToResponseResource(event);
@@ -77,6 +89,7 @@ public class EventService {
         LocationRequestDTO locationRequestDTO = eventRequestDTO.getLocation();
         EventStateRequestDTO eventStateRequestDTO = eventRequestDTO.getEventState();
         Set<EventCategoryRequestDTO> eventCategoryRequestDTOS = eventRequestDTO.getEventCategories();
+        EventNetworkRequestDTO eventNetworkRequestDTO = eventRequestDTO.getEventNetwork();
 
         Date date = dateRepository.findByBeginDateAndEndDate(
                         dateRequestDTO.getBeginDate(), dateRequestDTO.getEndDate())
@@ -92,6 +105,10 @@ public class EventService {
             eventCategories.add(eventCategoryRepository.findByName(eventCategoryRequestDTO.getName())
                     .orElseThrow(() -> new ResourceNotFoundException("event category not found")));
         }
+        EventNetwork eventNetwork = eventNetworkRepository.findByInstagramURLOrFacebookURLOrTwitterURL(
+                        eventNetworkRequestDTO.getInstagramURL(), eventNetworkRequestDTO.getFacebookURL(),
+                        eventNetworkRequestDTO.getTwitterURL())
+                .orElseThrow(() -> new ResourceNotFoundException("event network not found"));
 
 
         Event updateEvent = event.get();
@@ -101,7 +118,9 @@ public class EventService {
         updateEvent.setLocation(location);
         updateEvent.setEventState(eventState);
         updateEvent.setEventCategories(eventCategories);
+        updateEvent.setEventNetwork(eventNetwork);
         updateEvent = eventRepository.save(updateEvent);
+
 
 
         return eventMapper.entityToResponseResource(updateEvent);
@@ -189,5 +208,17 @@ public class EventService {
 
         return eventMapper.entityListToResponseResourceList(events);
     }
+
+    public EventNetworkResponseDTO getEventNetworkByEventId(Long id) {
+        Optional<Event> event = eventRepository.findById(id);
+        if (event.isEmpty()) {
+            throw new ResourceNotFoundException("event not found with id: " + id);
+        }
+        Event myEvent = event.get();
+        EventNetwork eventNetwork = myEvent.getEventNetwork();
+        return eventNetworkMapper.entityToResponseResource(eventNetwork);
+    }
+
+    
 
 }

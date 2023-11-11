@@ -2,6 +2,7 @@ package com.pe.unieventia.event.api;
 
 import com.pe.unieventia.event.dto.*;
 import com.pe.unieventia.event.domain.service.EventService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
+@Tag(name = "Event", description = "Event APIs")
 @RestController
 @RequestMapping("api/v1/events")
 @RequiredArgsConstructor

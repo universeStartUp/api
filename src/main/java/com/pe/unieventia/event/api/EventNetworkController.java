@@ -4,6 +4,7 @@ import com.pe.unieventia.event.domain.service.EventNetworkService;
 import com.pe.unieventia.event.dto.EventNetworkRequestDTO;
 import com.pe.unieventia.event.dto.EventNetworkResponseDTO;
 import com.pe.unieventia.event.dto.EventRequestDTO;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Tag(name = "EventNetwork", description = "EventNetwork APIs")
 @RestController
 @RequestMapping("api/v1/event-networks")
 @RequiredArgsConstructor

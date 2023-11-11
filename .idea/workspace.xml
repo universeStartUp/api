@@ -5,15 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="da647f06-784d-4b21-977f-47e8aabf05b2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/pe/unieventia/model/NotificationConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/pe/unieventia/model/NotificationConfig.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/pe/unieventia/notificationConfig/controller/NotificationSettingsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/pe/unieventia/notificationConfig/repository/NotificationConfigRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/pe/unieventia/notificationConfig/services/NotificationConfigService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pe/unieventia/controller/NotificationSettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pe/unieventia/controller/NotificationSettingsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/pe/unieventia/dto/NotificationSettingsDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pe/unieventia/dto/NotificationSettingsDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/settings-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/settings-form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pe/unieventia/controller/NotificationSettingsController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pe/unieventia/dto/NotificationSettingsDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pe/unieventia/notificationConfig/dto/NotificationSettingsDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pe/unieventia/model/NotificationConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/pe/unieventia/notificationConfig/model/NotificationConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pe/unieventia/repository/NotificationConfigRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/pe/unieventia/services/NotificationConfigService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/pe/unieventia/controller/NotificationSettingsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pe/unieventia/controller/NotificationSettingsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/pe/unieventia/dto/NotificationSettingsDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pe/unieventia/dto/NotificationSettingsDto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/settings-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/settings-form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/pe/unieventia/model/NotificationConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/pe/unieventia/model/NotificationConfig.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +98,7 @@
       <workItem from="1699635100113" duration="2735000" />
       <workItem from="1699639822361" duration="6073000" />
       <workItem from="1699646221725" duration="1389000" />
-      <workItem from="1699653060034" duration="4834000" />
+      <workItem from="1699653060034" duration="11494000" />
     </task>
     <servers />
   </component>

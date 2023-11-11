@@ -1,4 +1,4 @@
-package com.pe.unieventia.dto;
+package com.pe.unieventia.notificationConfig.dto;
 
 import lombok.Getter;
 import lombok.Setter;

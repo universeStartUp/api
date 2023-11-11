@@ -8,12 +8,14 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name="Emails")
 public class Email {
@@ -25,7 +27,7 @@ public class Email {
     @JoinColumn(name = "emailDomainId")
     private EmailDomain emailDomain;
 
-    public String getEmailAdress() {
+    public String getEmailAddress() {
         return local + "@" + emailDomain.getDomain();
     }
 }

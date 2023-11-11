@@ -39,24 +39,30 @@ public class EmailServiceTest {
     public void testCreateEmail() {
         // Arrange
         String emailAddress = "michael@ui.edu.com";
+        String universityName = "Universidad Internacional";
+        String universityAbbreviation = "UI";
 
         // Process
         String[] parts = emailAddress.split("@");
 
-        when(emailRepository.existsByLocalAndEmailDomain_Domain(parts[0], parts[1])).thenReturn(Boolean.FALSE);
+        when(emailRepository.existsByLocalAndEmailDomain_Domain(parts[0], parts[1]))
+                .thenReturn(Boolean.FALSE);
 
-        University university = new University();
-        university.setName("Universidad Internacional");
-        university.setAbbreviation("UI");
-        EmailDomain emailDomain = new EmailDomain();
-        emailDomain.setDomain(parts[1]);
-        emailDomain.setUniversity(university);
+        University university = University.builder()
+                .name(universityName)
+                .abbreviation(universityAbbreviation)
+                .build();
+        EmailDomain emailDomain = EmailDomain.builder()
+                .domain(parts[1])
+                .university(university)
+                .build();
 
         when(emailDomainRepository.findByDomain(parts[1])).thenReturn(Optional.of(emailDomain));
 
-        Email email = new Email();
-        email.setLocal(parts[0]);
-        email.setEmailDomain(emailDomain);
+        Email email = Email.builder()
+                .local((parts[0]))
+                .emailDomain(emailDomain)
+                .build();
 
         when(emailRepository.save(email)).thenReturn(email);
 
@@ -71,9 +77,10 @@ public class EmailServiceTest {
         String emailAddress = "michael@ui.edu.com";
 
         // Process
-        String[] parts = emailAddress.split("@");
+        String[] emailParts = emailAddress.split("@");
 
-        when(emailRepository.existsByLocalAndEmailDomain_Domain(parts[0], parts[1])).thenReturn(Boolean.TRUE);
+        when(emailRepository.existsByLocalAndEmailDomain_Domain(emailParts[0], emailParts[1]))
+                .thenReturn(Boolean.TRUE);
 
         // Act
         assertThrows(
@@ -90,10 +97,12 @@ public class EmailServiceTest {
         String emailAddress = "michael@ui.edu.com";
 
         // Process
-        String[] parts = emailAddress.split("@");
+        String[] emailParts = emailAddress.split("@");
 
-        when(emailRepository.existsByLocalAndEmailDomain_Domain(parts[0], parts[1])).thenReturn(Boolean.FALSE);
-        when(emailDomainRepository.findByDomain(parts[1])).thenReturn(Optional.empty());
+        when(emailRepository.existsByLocalAndEmailDomain_Domain(emailParts[0], emailParts[1]))
+                .thenReturn(Boolean.FALSE);
+        when(emailDomainRepository.findByDomain(emailParts[1]))
+                .thenReturn(Optional.empty());
 
         // Act
         assertThrows(ValidationException.class, () -> {

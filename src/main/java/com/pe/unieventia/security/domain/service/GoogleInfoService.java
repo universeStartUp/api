@@ -1,9 +1,9 @@
-package com.pe.unieventia.student_account.domain.service;
+package com.pe.unieventia.security.domain.service;
 
 import org.springframework.stereotype.Service;
 
-import com.pe.unieventia.student_account.domain.entity.GoogleInfo;
-import com.pe.unieventia.student_account.domain.persistence.GoogleInfoRepository;
+import com.pe.unieventia.security.domain.entity.GoogleInfo;
+import com.pe.unieventia.security.domain.persistence.GoogleInfoRepository;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -17,9 +17,10 @@ public class GoogleInfoService {
 
     @Transactional
     public GoogleInfo createDefault() {
-        GoogleInfo googleInfo = new GoogleInfo();
-        googleInfo.setAccessToken("0");
-        googleInfo.setRefreshToken("0");
+        GoogleInfo googleInfo = GoogleInfo.builder()
+                .accessToken("0")
+                .refreshToken("0")
+                .build();
 
         return googleInfoRepository.save(googleInfo);
     }

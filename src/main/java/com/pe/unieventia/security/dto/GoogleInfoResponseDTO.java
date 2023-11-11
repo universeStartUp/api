@@ -1,4 +1,4 @@
-package com.pe.unieventia.student_account.dto;
+package com.pe.unieventia.security.dto;
 
 import jakarta.persistence.Column;
 import lombok.Data;

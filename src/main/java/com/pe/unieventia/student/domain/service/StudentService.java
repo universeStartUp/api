@@ -1,8 +1,9 @@
 package com.pe.unieventia.student.domain.service;
 
+import com.pe.unieventia.security.domain.entity.User;
+import com.pe.unieventia.shared.exception.ResourceAlreadyExistsException;
 import org.springframework.stereotype.Service;
 
-import com.pe.unieventia.student.domain.entity.Email;
 import com.pe.unieventia.student.domain.entity.Student;
 import com.pe.unieventia.student.domain.persistence.StudentRepository;
 import com.pe.unieventia.student.dto.StudentResponseDTO;
@@ -16,48 +17,40 @@ import lombok.RequiredArgsConstructor;
 public class StudentService {
     private final StudentRepository studentRepository;
     private final StudentMapper studentMapper;
-
     private final EmailService emailService;
     
     @Transactional
-    public Student createStudent(
+    public Student signUp(
+        User user,
         String surname,
-        String firstName,
-        String lastName,
-        String studentCode,
-        String phoneNumber,
-        String emailAddress
+        String studentCode
     ) {
-        Email email = emailService.createEmail(emailAddress);
-        Student student = new Student();
-        student.setSurname(surname);
-        student.setFirstName(firstName);
-        student.setLastName(lastName);
-        student.setStudentCode(studentCode);
-        student.setPhoneNumber(phoneNumber);
-        student.setEmail(email);
+        if (studentRepository.existsStudentByUser_UserId(user.getUserId())) {
+            throw new ResourceAlreadyExistsException("User with id" + user.getUserId() + " is already registered as student.");
+        } else {
+            Student student = Student.builder()
+                    .user(user)
+                    .surname(surname)
+                    .studentCode(studentCode)
+                    .build();
 
-        return studentRepository.save(student);
+            return studentRepository.save(student);
+        }
     }
 
-    @Transactional
+    /*@Transactional
     public StudentResponseDTO createStudentResponseDto(
         String surname,
         String firstName,
-        String lastName,
-        String studentCode,
-        String phoneNumber,
-        String emailAddress
+        User user
     ) {
-        return studentMapper.entityToResponseDto(createStudent(
-                surname,
-                firstName,
-                lastName,
-                studentCode,
-                phoneNumber,
-                emailAddress
-            )
+        return studentMapper.entityToResponseDto(
+                this.createStudent(
+                        surname,
+                        firstName,
+                        user
+                )
         );
-    }
-    
+    }*/
+
 }

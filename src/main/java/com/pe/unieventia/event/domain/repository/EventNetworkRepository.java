@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 public interface EventNetworkRepository extends JpaRepository<EventNetwork,Long> {
-    Optional<EventNetwork> findById(Long id);
     boolean existsByFacebookURL(String url);
     boolean existsByTwitterURL(String url);
     boolean existsByInstagramURL(String url);

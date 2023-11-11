@@ -55,9 +55,9 @@ public class EventNetworkService {
     public EventNetworkResponseDTO updateEventNetwork(Long id, EventNetworkRequestDTO eventNetworkRequestDTO) {
         EventNetwork eventNetwork = eventNetworkRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("event network not found with id: " + id));
-        String twitterURL = eventNetwork.getTwitterURL();
-        String facebookURL = eventNetwork.getFacebookURL();
-        String instagramURL = eventNetwork.getInstagramURL();
+        String twitterURL = eventNetworkRequestDTO.getTwitterURL();
+        String facebookURL = eventNetworkRequestDTO.getFacebookURL();
+        String instagramURL = eventNetworkRequestDTO.getInstagramURL();
 
         if (eventNetworkRepository.existsByTwitterURL(twitterURL)) {
             throw new ResourceAlreadyExistsException("exists this twitterURL: " + twitterURL);

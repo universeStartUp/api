@@ -19,12 +19,12 @@ import java.util.List;
 public class EventNetworkController {
     private final EventNetworkService eventNetworkService;
     @DeleteMapping("/{eventNetworkId}")
-    public ResponseEntity<Void> deleteEventNetwork(Long eventNetworkId){
+    public ResponseEntity<Void> deleteEventNetwork(@PathVariable Long eventNetworkId){
         eventNetworkService.deleteEventNetwork(eventNetworkId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
     @GetMapping("/get/id/{id}")
-    public ResponseEntity<EventNetworkResponseDTO> getEventNetwork(Long id){
+    public ResponseEntity<EventNetworkResponseDTO> getEventNetwork(@PathVariable Long id){
         EventNetworkResponseDTO eventNetwork = eventNetworkService.getEventNetworkById(id);
         return new ResponseEntity<>(eventNetwork,HttpStatus.OK);
     }

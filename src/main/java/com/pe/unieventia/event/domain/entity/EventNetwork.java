@@ -5,20 +5,17 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
+@Entity
+@Table(name = "EventNetworks")
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name = "EventCategories")
-public class EventCategory {
+public class EventNetwork
+{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-
-    @ManyToMany(mappedBy = "eventCategories")
-    List<Event> events;
-
+    private String twitterURL;
+    private String facebookURL;
+    private String instagramURL;
 }

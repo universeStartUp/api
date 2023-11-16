@@ -17,4 +17,5 @@ public class EventResponseDTO {
     private LocationResponseDTO location;
     private Set<EventCategoryResponseDTO> eventCategories;
     private EventStateResponseDTO eventState;
+    private EventNetworkResponseDTO eventNetwork;
 }

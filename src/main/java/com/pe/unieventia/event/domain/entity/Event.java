@@ -11,6 +11,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name = "Events")
 public class Event {
 
     @Id
@@ -36,4 +37,8 @@ public class Event {
     joinColumns = @JoinColumn(name = "event_id"),
     inverseJoinColumns = @JoinColumn(name="event_categories_id"))
     Set<EventCategory> eventCategories;
+
+    @OneToOne
+    @JoinColumn(name="event_network_id")
+    private EventNetwork eventNetwork;
 }

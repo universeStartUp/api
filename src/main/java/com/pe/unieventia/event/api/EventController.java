@@ -79,9 +79,14 @@ public class EventController {
         return new ResponseEntity<>(event, HttpStatus.OK);
     }
 
+    @GetMapping("/get/networks/{id}")
+    public ResponseEntity<EventNetworkResponseDTO> getEventNetworks(
+            @PathVariable Long id) {
 
+        EventNetworkResponseDTO eventNetwork = eventService.getEventNetworkByEventId(id);
+        return new ResponseEntity<>(eventNetwork, HttpStatus.OK);
+    }
 
-
-
+    
 
 }

@@ -16,6 +16,12 @@ import java.util.List;
 public class EventController {
     private final EventService eventService;
 
+    @GetMapping("/all")
+    public ResponseEntity<List<EventResponseDTO>> getAllEvents() {
+        List<EventResponseDTO> events = eventService.getAllEvents();
+        return new ResponseEntity<>(events, HttpStatus.OK);
+    }
+
     @PostMapping("/create")
     public ResponseEntity<EventResponseDTO> createEvent(
             @RequestBody EventRequestDTO eventRequestDTO) {

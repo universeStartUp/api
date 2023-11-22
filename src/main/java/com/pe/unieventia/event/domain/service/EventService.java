@@ -219,6 +219,15 @@ public class EventService {
         return eventNetworkMapper.entityToResponseResource(eventNetwork);
     }
 
+    //get all
+    public List<EventResponseDTO> getAllEvents() {
+        List<Event> events = eventRepository.findAll();
+        if (events.isEmpty()) {
+            throw new ResourceNotFoundException("event not found");
+        }
+        return eventMapper.entityListToResponseResourceList(events);
+    }
+
     
 
 }

@@ -14,6 +14,7 @@ public class EventNetwork
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "eventNetworkId")
     private Long id;
     private String twitterURL;
     private String facebookURL;

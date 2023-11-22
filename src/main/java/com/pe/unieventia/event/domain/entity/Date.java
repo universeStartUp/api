@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 public class Date {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "eventDateId")
     private Long id;
     private LocalDateTime beginDate;
     private LocalDateTime endDate;

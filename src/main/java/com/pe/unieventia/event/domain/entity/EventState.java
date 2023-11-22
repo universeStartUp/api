@@ -13,6 +13,8 @@ import lombok.NoArgsConstructor;
 public class EventState {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "eventStateId")
     private Long id;
+    @Column(name = "state")
     private String name;
 }

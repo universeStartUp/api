@@ -15,7 +15,9 @@ import java.util.List;
 public class EventCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "eventCategoryId")
     private Long id;
+    @Column(name = "category")
     private String name;
 
     @ManyToMany(mappedBy = "eventCategories")

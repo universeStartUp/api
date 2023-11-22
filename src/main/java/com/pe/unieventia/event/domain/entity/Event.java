@@ -16,29 +16,30 @@ public class Event {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "eventId")
     private  Long id;
     private String title;
     private String description;
 
     @ManyToOne
-    @JoinColumn(name="location_id")
+    @JoinColumn(name="locationsId")
     private Location location;
 
     @ManyToOne
-    @JoinColumn(name="date_id")
+    @JoinColumn(name="eventDateId")
     private Date date;
 
     @ManyToOne
-    @JoinColumn(name="state_id")
+    @JoinColumn(name="eventStateId")
     private EventState eventState;
 
     @ManyToMany
-    @JoinTable(name="event_event_categories",
-    joinColumns = @JoinColumn(name = "event_id"),
-    inverseJoinColumns = @JoinColumn(name="event_categories_id"))
+    @JoinTable(name="EventCategoriesLists",
+    joinColumns = @JoinColumn(name = "eventId"),
+    inverseJoinColumns = @JoinColumn(name="eventCategoryId"))
     Set<EventCategory> eventCategories;
 
     @OneToOne
-    @JoinColumn(name="event_network_id")
+    @JoinColumn(name="eventNetworkId")
     private EventNetwork eventNetwork;
 }

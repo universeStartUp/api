@@ -13,10 +13,11 @@ import lombok.NoArgsConstructor;
 public class District {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "districtId")
     private Long id;
 
     private String name;
     @ManyToOne
-    @JoinColumn(name = "department_id")
+    @JoinColumn(name = "departmentId")
     private Department department;
 }

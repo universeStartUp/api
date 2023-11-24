@@ -11,10 +11,13 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "EventCategories")
 public class EventCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "eventCategoryId")
     private Long id;
+    @Column(name = "category")
     private String name;
 
     @ManyToMany(mappedBy = "eventCategories")

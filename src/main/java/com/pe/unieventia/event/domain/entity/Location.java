@@ -7,16 +7,18 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@Table(name = "Locations")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Location {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "locationId")
     private Long id;
 
     private String address;
 
     @ManyToOne
-    @JoinColumn(name = "district_id")
+    @JoinColumn(name = "districtId")
     private District district;
 }

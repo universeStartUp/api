@@ -16,6 +16,12 @@ import java.util.List;
 public class EventController {
     private final EventService eventService;
 
+    @GetMapping("/all")
+    public ResponseEntity<List<EventResponseDTO>> getAllEvents() {
+        List<EventResponseDTO> events = eventService.getAllEvents();
+        return new ResponseEntity<>(events, HttpStatus.OK);
+    }
+
     @PostMapping("/create")
     public ResponseEntity<EventResponseDTO> createEvent(
             @RequestBody EventRequestDTO eventRequestDTO) {
@@ -79,9 +85,14 @@ public class EventController {
         return new ResponseEntity<>(event, HttpStatus.OK);
     }
 
+    @GetMapping("/get/networks/{id}")
+    public ResponseEntity<EventNetworkResponseDTO> getEventNetworks(
+            @PathVariable Long id) {
 
+        EventNetworkResponseDTO eventNetwork = eventService.getEventNetworkByEventId(id);
+        return new ResponseEntity<>(eventNetwork, HttpStatus.OK);
+    }
 
-
-
+    
 
 }

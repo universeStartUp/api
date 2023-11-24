@@ -7,13 +7,16 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Table(name = "Departments")
+@Table(name = "EventNetworks")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Department {
+public class EventNetwork
+{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "departmentId")
+    @Column(name = "eventNetworkId")
     private Long id;
-    private String name;
+    private String twitterURL;
+    private String facebookURL;
+    private String instagramURL;
 }

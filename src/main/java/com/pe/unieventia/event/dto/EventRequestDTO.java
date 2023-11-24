@@ -24,4 +24,6 @@ public class EventRequestDTO {
     private Set<EventCategoryRequestDTO> eventCategories;
     @NotNull
     private EventStateRequestDTO eventState;
+    @NotNull
+    private EventNetworkRequestDTO eventNetwork;
 }
